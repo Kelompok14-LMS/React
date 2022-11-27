@@ -15,9 +15,7 @@ export default function SetupRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<LandingPage />} />
-        </Route>
+        <Route path="/" element={<LandingPage />} />
 
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/login" element={<SignInPage />} />
