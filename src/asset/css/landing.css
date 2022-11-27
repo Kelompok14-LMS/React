@@ -1,0 +1,223 @@
+section{
+    min-height: 100vh;
+    padding: 6.25em 0;
+}
+
+.section-title{
+    font-weight: 500;
+    font-size: 4em;
+    color: white;
+}
+
+.section-subtitle{
+    font-weight: 500;
+    font-size: 1.25em;
+    color: white;
+    line-height: 150%
+}
+
+.text-dark{
+    color: #112D4E !important;
+}
+
+.image-section1{
+    width: 100%;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.container.nav{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1270px;
+}
+
+.navbar{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    padding: 1.5em 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.nav-logo{
+    width: 6.875em;
+}
+
+.nav-search{
+    position: relative;
+}
+
+.svg-search{
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    bottom: 0%;
+}
+
+.searchBox{
+    width: 29.375em;
+    height: 3.500em;
+    border-radius: 0.5em;
+    border: 1px solid #888;
+    padding: 1em 0 1em 4em;
+}
+
+.nav-link{
+    font-weight: 500;
+    font-size: 1.5em;
+    margin: 0 0.5em;
+    color: black;
+    padding: 0;
+}
+
+.nav-button a{
+    transition-duration: 0.5s;
+    font-size: 1.5em;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 0.675em 1em;
+    width: 6.875em;
+    text-align: center;
+}
+
+.nav-button a:hover{
+    cursor: pointer;
+}
+
+.nav-button a:active{
+    transform: scale(0.95)
+}
+
+.btn-login{
+    border: 1px solid #2F80ED;
+    color: #2F80ED;
+    font-weight: 500;
+    margin-right: 0.5em;
+}
+
+.btn-login:hover{
+    border-color: white;
+    background-color: #2F80ED;
+    color: white;
+}
+
+.btn-register{
+    border: 1px solid white;
+    background-color: #2F80ED;
+    font-weight: 500;
+    color: white;
+}
+
+.btn-register:hover{
+    border-color: #2F80ED;
+    background-color: white;
+    color: #2F80ED;
+}
+
+/* Desc */
+.bg-dark{
+    background-color: #112D4E !important;
+}
+
+/* Card */
+.card{
+    border-color: #CFCECE;
+}
+
+.card-body{
+    padding: 0.5em;
+}
+
+.card-title{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.card-text{
+    font-weight: 500;
+    font-size: 0.75em;
+}
+
+.card-info{
+    font-weight: 700;
+    font-size: 0.75em;
+    margin: 0;
+}
+
+/* End Desc */
+/* Point */
+.point-item{
+    width: 17.438em;
+}
+
+.point-title{
+    font-weight: 700;
+    font-size: 1.5em;
+    color: white;
+    margin-top: 1em;
+}
+
+.point-subtitle{
+    margin-top: 0.5em;
+    font-weight: 500;
+    font-size: 1.25em;
+    color: white;
+}
+
+/* Quote */
+.quote{
+    font-size: 1.3em;
+    line-height: 150%;
+    color: #112D4E;
+}
+
+.quote-name{
+    color: #112D4E;
+    font-size: 1.875em;
+    font-weight: 700;
+}
+
+.quote-name{
+    color: #112D4E;
+    font-size: 1.25em;
+    margin-bottom: 0;
+}
+
+/* End Quote */
+
+/* Footer */
+.footer{
+    padding: 1.5em 0;
+}
+
+.footer-menu{
+    font-size: 1.75em;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+.footer-link{
+    color: white;
+    font-size: 1.25em;
+    display: block;
+    text-decoration: none;
+}
+
+.footer-logo{
+    width: 6.875em;
+    margin-bottom: 3.625em;
+}
+
+.footer-copyright{
+    font-size: 1.25em;
+    color: white;
+    margin: 0;
+}
+/* End Footer */
