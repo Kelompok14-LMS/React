@@ -12,7 +12,7 @@ export default function SetupRouter() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Courses />} />
+            <Route path="/courses" element={<Courses />} />
             <Route path="/add-course" element={<AddCourses />} />
             <Route path="/add-section" element={<AddSection />} />
             <Route path="/detail-course" element={<DetailCourse />} />

@@ -88,6 +88,29 @@ export default function Courses() {
             </Col>
           </Row>
         </div>
+        <div className="shadow bg-body rounded-2 my-5">
+          <Row>
+            <Col lg={6}>
+              <img src={CourseImg1} alt="Course 1" className="img-fluid" />
+            </Col>
+            <Col lg={6} className="p-5" style={{ display: "flex", flexDirection: "column" }}>
+              <div className="d-flex justify-content-between align-items-center">
+                <h2>Programming 101</h2>
+                <Button variant="outline-dark" size="sm" style={{ height: "35px" }}>
+                  <FaTrashAlt />
+                </Button>
+              </div>
+              <p className="my-3">
+                This is a wider card with supporting text below as a natural lead-in to additional content. This content
+                is a little bit longer.
+              </p>
+
+              <div className="mt-auto text-end">
+                <Button variant="warning">Lihat Selengkapnya</Button>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </Container>
     </div>
   );

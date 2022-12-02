@@ -8,18 +8,23 @@ export const courseSlice = createApi({
       "Content-Type": "application/json",
     },
   }),
+  tagTypes: ["Course"],
   endpoints: (builder) => ({
     getCourses: builder.query({
       query: () => "/v1/course",
-      providesTags: ["Post"],
+      providesTags: ["Course"],
+    }),
+    getCourse: builder.query({
+      query: ({ id }) => `/v1/course/${id}`,
+      providesTags: ["Course"],
     }),
     addCourse: builder.mutation({
-      query: ({ mentor_id, thumbnail, title, category_id, description }) => ({
+      query: ({ thumbnail, title, category_id, description }) => ({
         url: "/v1/course",
         method: "POST",
-        body: { mentor_id, thumbnail, title, category_id, description },
+        body: { thumbnail, title, category_id, description },
       }),
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Course"],
     }),
     updateCourse: builder.mutation({
       query: ({ id, thumbnail, title, category_id, description }) => {
@@ -29,48 +34,49 @@ export const courseSlice = createApi({
           body: { thumbnail, title, category_id, description },
         };
       },
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Course"],
     }),
     deleteCourse: builder.mutation({
       query: ({ id }) => ({
         url: `/v1/course/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Course"],
     }),
     getModules: builder.query({
       query: () => "/v1/course/module",
-      providesTags: ["Post"],
+      providesTags: ["Course"],
     }),
     addModule: builder.mutation({
       query: ({ course_id, title, video, slide, assignment }) => ({
-        url: "/v1/course/module",
+        url: `/v1/course/${course_id}/module`,
         method: "POST",
         body: { course_id, title, video, slide, assignment },
       }),
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Course"],
     }),
     updateModule: builder.mutation({
-      query: ({ module_id, title, video, slide, assignment }) => {
+      query: ({ course_id, module_id, title, video, slide, assignment }) => {
         return {
-          url: `/v1/course/module/${module_id}`,
+          url: `/v1/course/${course_id}/module/${module_id}`,
           method: "PUT",
-          body: { title, video, slide, assignment },
+          body: { course_id, title, video, slide, assignment },
         };
       },
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Course"],
     }),
     deleteModule: builder.mutation({
       query: ({ module_id }) => ({
         url: `/v1/course/module/${module_id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Course"],
     }),
   }),
 });
 export const {
   useGetCoursesQuery,
+  useGetCourseQuery,
   useAddCourseMutation,
   useUpdateCourseMutation,
   useDeleteCourseMutation,

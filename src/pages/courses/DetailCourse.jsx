@@ -1,14 +1,45 @@
 import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Section from "../../components/courses/Section";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import { RiPencilFill } from "react-icons/ri";
 import { BsChevronLeft } from "react-icons/bs";
+import { useUpdateCourseMutation } from "../../store/features/courseSlice";
 
 export default function DetailCourse() {
-  const hiddenFileInput = useRef();
+  const navigate = useNavigate();
+
   const [toggleEdit, setToggleEdit] = useState(false);
+
+  const [thumbnail, setThumbnail] = useState();
+  const [title, setTitle] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [description, setDescription] = useState("");
+
+  const onThumbnailChange = (e) => setThumbnail(e.target.value);
+  const onTitleChange = (e) => setTitle(e.target.value);
+  const onCategoryIdChange = (e) => setCategoryId(e.target.value);
+  const onDescriptionChange = (e) => setDescription(e.target.value);
+
+  const [updateCourse] = useUpdateCourseMutation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const payload = new FormData();
+    payload.append("thumbnail", thumbnail);
+
+    updateCourse({
+      thumbnail: payload,
+      title: title,
+      category: categoryId,
+      description: description,
+    });
+
+    navigate("/detail-course");
+  };
+
+  const hiddenFileInput = useRef();
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -18,17 +49,17 @@ export default function DetailCourse() {
     <Container>
       <div className="d-flex my-4">
         <div>
-          <Button variant="outline-warning" as={Link} to="/">
+          <Button variant="outline-warning" as={Link} to="/courses">
             <BsChevronLeft /> Kembali
           </Button>
         </div>
         <h3 className="mx-auto text-white">Detail Course</h3>
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="upload-gambar" style={{ backgroundImage: `url(${BgAddCourse})` }}>
             <Form.Group className="mb-3 text-center">
-              <Form.Control type="file" ref={hiddenFileInput} className="d-none" />
+              <Form.Control type="file" className="d-none" ref={hiddenFileInput} onChange={onThumbnailChange} />
               <Button variant="outline-warning" onClick={handleClick}>
                 Ganti Gambar
               </Button>
@@ -66,11 +97,20 @@ export default function DetailCourse() {
                 </div>
                 <Form.Group className="mb-3">
                   <Form.Label>Judul Course</Form.Label>
-                  <Form.Control type="text" placeholder="Klik disini" />
+                  <Form.Control type="text" placeholder="Klik disini" onChange={onTitleChange} />
                 </Form.Group>
-                <Form.Group className="mb-4">
+
+                <Form.Label>Kategori</Form.Label>
+                <Form.Select value={categoryId} onChange={onCategoryIdChange}>
+                  <option>Pilih disini</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+
+                <Form.Group className="mt-3 mb-4">
                   <Form.Label>Deskripsi</Form.Label>
-                  <Form.Control as="textarea" placeholder="Klik disini" rows={7} />
+                  <Form.Control as="textarea" placeholder="Klik disini" rows={7} onChange={onDescriptionChange} />
                 </Form.Group>
                 <div className="text-center">
                   <Button variant="warning w-50" type="submit" onClick={() => setToggleEdit(false)}>

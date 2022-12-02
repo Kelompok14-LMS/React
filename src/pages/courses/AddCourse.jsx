@@ -1,10 +1,40 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import { BsChevronLeft } from "react-icons/bs";
+import { useAddCourseMutation } from "../../store/features/courseSlice";
 
 export default function AddCourse() {
+  const navigate = useNavigate();
+
+  const [thumbnail, setThumbnail] = useState();
+  const [title, setTitle] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [description, setDescription] = useState("");
+
+  const onThumbnailChange = (e) => setThumbnail(e.target.value);
+  const onTitleChange = (e) => setTitle(e.target.value);
+  const onCategoryIdChange = (e) => setCategoryId(e.target.value);
+  const onDescriptionChange = (e) => setDescription(e.target.value);
+
+  const [addCourse] = useAddCourseMutation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const payload = new FormData();
+    payload.append("thumbnail", thumbnail);
+
+    addCourse({
+      thumbnail: payload,
+      title: title,
+      category: categoryId,
+      description: description,
+    });
+
+    navigate("/courses");
+  };
+
   const hiddenFileInput = useRef();
 
   const handleClick = (e) => {
@@ -22,10 +52,10 @@ export default function AddCourse() {
         <h2 className=" mx-auto text-white">Tambah Course</h2>
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="upload-gambar" style={{ backgroundImage: `url(${BgAddCourse})` }}>
             <Form.Group className="mb-3 text-center">
-              <Form.Control type="file" ref={hiddenFileInput} className="d-none" />
+              <Form.Control type="file" className="d-none" ref={hiddenFileInput} onChange={onThumbnailChange} />
               <Button variant="outline-warning" onClick={handleClick}>
                 Upload Gambar
               </Button>
@@ -35,11 +65,11 @@ export default function AddCourse() {
           <div className="p-5">
             <Form.Group className="mb-3">
               <Form.Label>Judul Course</Form.Label>
-              <Form.Control type="text" placeholder="Klik disini" />
+              <Form.Control type="text" placeholder="Klik disini" onChange={onTitleChange} />
             </Form.Group>
 
             <Form.Label>Kategori</Form.Label>
-            <Form.Select>
+            <Form.Select value={categoryId} onChange={onCategoryIdChange}>
               <option>Pilih disini</option>
               <option value="1">One</option>
               <option value="2">Two</option>
@@ -48,7 +78,13 @@ export default function AddCourse() {
 
             <Form.Group className="mt-3 mb-4">
               <Form.Label>Deskripsi</Form.Label>
-              <Form.Control as="textarea" placeholder="Klik disini" rows={7} />
+              <Form.Control
+                as="textarea"
+                placeholder="Klik disini"
+                rows={7}
+                value={description}
+                onChange={onDescriptionChange}
+              />
             </Form.Group>
 
             <div className="text-center">
