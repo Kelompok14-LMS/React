@@ -15,11 +15,11 @@ export default function TopBar() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="mx-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-            <Nav.Link href="#action1" className="fw-bold text-black me-5">
+            <Nav.Link href="/" className="fw-bold text-black me-5">
               Courses
             </Nav.Link>
-            <Nav.Link href="#action2" className="fw-bold text-black">
-              Meentees
+            <Nav.Link href="/mentees" className="fw-bold text-black">
+              Mentees
             </Nav.Link>
           </Nav>
           <Nav.Link href="#action2" className="fw-bold text-black">

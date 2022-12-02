@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Section from "../../components/courses/Section";
+import Section from "../../components/Courses/Section";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import { RiPencilFill } from "react-icons/ri";
 import { BsChevronLeft } from "react-icons/bs";
