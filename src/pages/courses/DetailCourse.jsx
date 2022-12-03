@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Section from "../../components/courses/Section";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import { RiPencilFill } from "react-icons/ri";
-import { BsChevronLeft } from "react-icons/bs";
 import { useUpdateCourseMutation } from "../../store/features/courseSlice";
 
 export default function DetailCourse() {
@@ -47,13 +46,15 @@ export default function DetailCourse() {
 
   return (
     <Container>
-      <div className="d-flex my-4">
-        <div>
-          <Button variant="outline-warning" as={Link} to="/courses">
-            <BsChevronLeft /> Kembali
-          </Button>
-        </div>
-        <h3 className="mx-auto text-white">Detail Course</h3>
+      <div className="my-4">
+        <nav>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item fs-5">
+              <Link to="/courses">Daftar Courses</Link>
+            </li>
+            <li className="breadcrumb-item active fs-5 text-warning">Detail Course</li>
+          </ol>
+        </nav>
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>

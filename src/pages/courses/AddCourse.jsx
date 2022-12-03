@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
-import { BsChevronLeft } from "react-icons/bs";
 import { useAddCourseMutation } from "../../store/features/courseSlice";
 
 export default function AddCourse() {
@@ -43,13 +42,15 @@ export default function AddCourse() {
 
   return (
     <Container>
-      <div className="d-flex my-4">
-        <div>
-          <Button variant="outline-warning" as={Link} to="/">
-            <BsChevronLeft /> Kembali
-          </Button>
-        </div>
-        <h2 className=" mx-auto text-white">Tambah Course</h2>
+      <div className="my-4">
+        <nav>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item fs-5">
+              <Link to="/courses">Daftar Courses</Link>
+            </li>
+            <li className="breadcrumb-item active fs-5 text-warning">Tambah Course</li>
+          </ol>
+        </nav>
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>
