@@ -5,6 +5,7 @@ import { RiPencilFill } from "react-icons/ri";
 import { useUpdateCourseMutation } from "../../store/features/courseSlice";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import Section from "../../components/courses/Section";
+import Breadcrumb from "../../components/courses/Breadcrumb";
 
 export default function DetailCourse() {
   const navigate = useNavigate();
@@ -45,14 +46,7 @@ export default function DetailCourse() {
   return (
     <>
       <div className="my-4">
-        <nav>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item fs-5">
-              <Link to="/courses">Daftar Courses</Link>
-            </li>
-            <li className="breadcrumb-item active fs-5 text-warning">Detail Course</li>
-          </ol>
-        </nav>
+        <Breadcrumb prev1="Daftar Courses" link1="/courses" current="Detail Course" />
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>

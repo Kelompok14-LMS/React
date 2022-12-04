@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useAddModuleMutation } from "../../store/features/courseSlice";
 
 export default function AddSection() {
@@ -31,17 +32,13 @@ export default function AddSection() {
   return (
     <>
       <div className="my-4">
-        <nav>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item fs-5">
-              <Link to="/courses">Daftar Courses</Link>
-            </li>
-            <li className="breadcrumb-item fs-5">
-              <Link to="/detail-course">Detail Course</Link>
-            </li>
-            <li className="breadcrumb-item active fs-5 text-warning">Tambah Section</li>
-          </ol>
-        </nav>
+        <Breadcrumb
+          prev1="Daftar Courses"
+          link1="/courses"
+          prev2="Detail Course"
+          link2="/detail-course"
+          current="Tambah Section"
+        />
       </div>
       <div className="shadow-lg bg-body p-5 rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>
