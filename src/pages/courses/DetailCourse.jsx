@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Section from "../../components/courses/Section";
-import BgAddCourse from "../../assets/img/bg-add-course.png";
 import { RiPencilFill } from "react-icons/ri";
 import { useUpdateCourseMutation } from "../../store/features/courseSlice";
+import BgAddCourse from "../../assets/img/bg-add-course.png";
+import Section from "../../components/courses/Section";
 
 export default function DetailCourse() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function DetailCourse() {
   const [categoryId, setCategoryId] = useState("");
   const [description, setDescription] = useState("");
 
-  const onThumbnailChange = (e) => setThumbnail(e.target.value);
+  const onThumbnailChange = (e) => setThumbnail(e.target.files[0]);
   const onTitleChange = (e) => setTitle(e.target.value);
   const onCategoryIdChange = (e) => setCategoryId(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
@@ -27,13 +27,11 @@ export default function DetailCourse() {
     e.preventDefault();
     const payload = new FormData();
     payload.append("thumbnail", thumbnail);
+    payload.append("title", title);
+    payload.append("categoryId", categoryId);
+    payload.append("description", description);
 
-    updateCourse({
-      thumbnail: payload,
-      title: title,
-      category: categoryId,
-      description: description,
-    });
+    updateCourse(payload);
 
     navigate("/detail-course");
   };
@@ -58,7 +56,10 @@ export default function DetailCourse() {
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>
-          <div className="upload-gambar" style={{ backgroundImage: `url(${BgAddCourse})` }}>
+          <div
+            className="upload-gambar"
+            style={{ backgroundImage: `url(${thumbnail ? URL.createObjectURL(thumbnail) : BgAddCourse})` }}
+          >
             <Form.Group className="mb-3 text-center">
               <Form.Control type="file" className="d-none" ref={hiddenFileInput} onChange={onThumbnailChange} />
               <Button variant="outline-warning" onClick={handleClick}>

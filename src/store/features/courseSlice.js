@@ -5,7 +5,7 @@ export const courseSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
   }),
   tagTypes: ["Course"],
@@ -19,10 +19,10 @@ export const courseSlice = createApi({
       providesTags: ["Course"],
     }),
     addCourse: builder.mutation({
-      query: ({ thumbnail, title, category_id, description }) => ({
+      query: (data) => ({
         url: "/v1/course",
         method: "POST",
-        body: { thumbnail, title, category_id, description },
+        body: data,
       }),
       invalidatesTags: ["Course"],
     }),

@@ -12,7 +12,7 @@ export default function AddCourse() {
   const [categoryId, setCategoryId] = useState("");
   const [description, setDescription] = useState("");
 
-  const onThumbnailChange = (e) => setThumbnail(e.target.value);
+  const onThumbnailChange = (e) => setThumbnail(e.target.files[0]);
   const onTitleChange = (e) => setTitle(e.target.value);
   const onCategoryIdChange = (e) => setCategoryId(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
@@ -23,13 +23,11 @@ export default function AddCourse() {
     e.preventDefault();
     const payload = new FormData();
     payload.append("thumbnail", thumbnail);
+    payload.append("title", title);
+    payload.append("categoryId", categoryId);
+    payload.append("description", description);
 
-    addCourse({
-      thumbnail: payload,
-      title: title,
-      category: categoryId,
-      description: description,
-    });
+    addCourse(payload);
 
     navigate("/courses");
   };
@@ -54,7 +52,10 @@ export default function AddCourse() {
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>
-          <div className="upload-gambar" style={{ backgroundImage: `url(${BgAddCourse})` }}>
+          <div
+            className="upload-gambar"
+            style={{ backgroundImage: `url(${thumbnail ? URL.createObjectURL(thumbnail) : BgAddCourse})` }}
+          >
             <Form.Group className="mb-3 text-center">
               <Form.Control type="file" className="d-none" ref={hiddenFileInput} onChange={onThumbnailChange} />
               <Button variant="outline-warning" onClick={handleClick}>
