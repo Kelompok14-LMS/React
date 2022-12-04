@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RiPencilFill } from "react-icons/ri";
 import { useUpdateCourseMutation } from "../../store/features/courseSlice";
@@ -43,7 +43,7 @@ export default function DetailCourse() {
   };
 
   return (
-    <Container>
+    <>
       <div className="my-4">
         <nav>
           <ol className="breadcrumb">
@@ -134,6 +134,6 @@ export default function DetailCourse() {
           </div>
         </div>
       </div>
-    </Container>
+    </>
   );
 }

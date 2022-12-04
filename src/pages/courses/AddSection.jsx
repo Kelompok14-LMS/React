@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAddModuleMutation } from "../../store/features/courseSlice";
 
@@ -29,7 +29,7 @@ export default function AddSection() {
   };
 
   return (
-    <Container>
+    <>
       <div className="my-4">
         <nav>
           <ol className="breadcrumb">
@@ -76,6 +76,6 @@ export default function AddSection() {
           </div>
         </Form>
       </div>
-    </Container>
+    </>
   );
 }

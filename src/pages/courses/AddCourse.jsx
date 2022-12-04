@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import { useAddCourseMutation } from "../../store/features/courseSlice";
@@ -39,7 +39,7 @@ export default function AddCourse() {
   };
 
   return (
-    <Container>
+    <>
       <div className="my-4">
         <nav>
           <ol className="breadcrumb">
@@ -97,6 +97,6 @@ export default function AddCourse() {
           </div>
         </Form>
       </div>
-    </Container>
+    </>
   );
 }
