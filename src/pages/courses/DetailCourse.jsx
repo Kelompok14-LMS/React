@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RiPencilFill } from "react-icons/ri";
@@ -13,6 +13,7 @@ export default function DetailCourse() {
   const [toggleEdit, setToggleEdit] = useState(false);
 
   const [thumbnail, setThumbnail] = useState();
+  const [previewThumbnail, setPreviewThumbnail] = useState();
   const [title, setTitle] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [description, setDescription] = useState("");
@@ -21,6 +22,16 @@ export default function DetailCourse() {
   const onTitleChange = (e) => setTitle(e.target.value);
   const onCategoryIdChange = (e) => setCategoryId(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
+
+  useEffect(() => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewThumbnail(reader.result);
+    };
+    if (thumbnail) {
+      reader.readAsDataURL(thumbnail);
+    }
+  }, [thumbnail]);
 
   const [updateCourse] = useUpdateCourseMutation();
 
@@ -52,7 +63,7 @@ export default function DetailCourse() {
         <Form onSubmit={handleSubmit}>
           <div
             className="upload-gambar"
-            style={{ backgroundImage: `url(${thumbnail ? URL.createObjectURL(thumbnail) : BgAddCourse})` }}
+            style={{ backgroundImage: `url(${previewThumbnail ? previewThumbnail : BgAddCourse})` }}
           >
             <Form.Group className="mb-3 text-center">
               <Form.Control type="file" className="d-none" ref={hiddenFileInput} onChange={onThumbnailChange} />

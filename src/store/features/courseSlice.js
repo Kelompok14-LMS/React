@@ -4,9 +4,6 @@ export const courseSlice = createApi({
   reducerPath: "courseSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   }),
   tagTypes: ["Course"],
   endpoints: (builder) => ({
@@ -72,6 +69,10 @@ export const courseSlice = createApi({
       }),
       invalidatesTags: ["Course"],
     }),
+    getCategories: builder.query({
+      query: () => `/categories`,
+      providesTags: ["Course"],
+    }),
   }),
 });
 export const {
@@ -84,4 +85,5 @@ export const {
   useAddModuleMutation,
   useUpdateModuleMutation,
   useDeleteModuleMutation,
+  useGetCategoriesQuery,
 } = courseSlice;
