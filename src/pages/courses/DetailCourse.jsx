@@ -76,21 +76,20 @@ export default function DetailCourse() {
           <div className="ps-5 pt-5 pe-5">
             {!toggleEdit && (
               <>
+                <p className="m-0 fw-semibold text-decoration-underline">Programming</p>
+
                 <div className="d-flex justify-content-between align-items-center mb-2">
-                  <h3>Web Programming 101</h3>
+                  <h3>Front-end Developer</h3>
                   <Button variant="outline-dark p-1" onClick={() => setToggleEdit(true)}>
                     <RiPencilFill size="25px" />
                   </Button>
                 </div>
                 <p>
-                  Web programming refers to the writing, markup and coding involved in Web development, which includes
-                  Web content, Web client and server scripting and network security. The most common languages used for
-                  Web programming are XML, HTML, JavaScript, Perl 5 and PHP. Web programming refers to the writing,
-                  markup and coding involved in Web development, which includes Web content, Web client and server
-                  scripting and network security. The most common languages used for Web programming are XML, HTML,
-                  JavaScript, Perl 5 and PHP. Web programming refers to the writing, markup and coding involved in Web
-                  development, which includes Web content, Web client and server scripting and network security. The
-                  most common languages used for Web programming are XML, HTML, JavaScript, Perl 5 and PHP.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                  officia deserunt mollit anim id est laborum.
                 </p>
               </>
             )}

@@ -4,26 +4,29 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useAddModuleMutation } from "../../store/features/courseSlice";
 
-export default function AddSection() {
+export default function AddModule() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
+  const [video, setVideo] = useState();
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
+  const onVideoChange = (e) => setVideo(e.target.files[0]);
 
   const [addModule] = useAddModuleMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const payload = new FormData();
+    payload.append("title", title);
+    payload.append("description", description);
+    payload.append("video", video);
 
-    addModule({
-      title: title,
-      description: description,
-    });
+    addModule(payload);
 
-    navigate("/detail-course");
+    navigate("/courses");
   };
 
   return (
@@ -34,7 +37,7 @@ export default function AddSection() {
           link1="/courses"
           prev2="Detail Course"
           link2="/detail-course"
-          current="Tambah Section"
+          current="Tambah Materi"
         />
       </div>
       <div className="shadow-lg bg-body p-5 rounded-3 mb-5">
@@ -52,6 +55,23 @@ export default function AddSection() {
               placeholder="Klik disini"
               value={description}
               onChange={onDescriptionChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formFile" className="mb-3">
+            <div className="d-flex justify-content-between">
+              <Form.Label>Video Materi</Form.Label>
+            </div>
+            {video && (
+              <video width="100%" height="500px" controls className="my-3">
+                <source src={URL.createObjectURL(video)} />
+              </video>
+            )}
+            <Form.Control
+              type="file"
+              name="video"
+              onChange={onVideoChange}
+              onClick={(e) => (e.target.value = null) || setVideo()}
             />
           </Form.Group>
 

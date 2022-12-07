@@ -8,16 +8,16 @@ export const courseSlice = createApi({
   tagTypes: ["Course"],
   endpoints: (builder) => ({
     getCourses: builder.query({
-      query: () => "/v1/course",
+      query: () => "/course",
       providesTags: ["Course"],
     }),
     getCourse: builder.query({
-      query: ({ id }) => `/v1/course/${id}`,
+      query: ({ id }) => `/course/${id}`,
       providesTags: ["Course"],
     }),
     addCourse: builder.mutation({
       query: (data) => ({
-        url: "/v1/course",
+        url: "/course",
         method: "POST",
         body: data,
       }),
@@ -26,7 +26,7 @@ export const courseSlice = createApi({
     updateCourse: builder.mutation({
       query: ({ id, thumbnail, title, category_id, description }) => {
         return {
-          url: `/v1/course/${id}`,
+          url: `/course/${id}`,
           method: "PUT",
           body: { thumbnail, title, category_id, description },
         };
@@ -35,18 +35,18 @@ export const courseSlice = createApi({
     }),
     deleteCourse: builder.mutation({
       query: ({ id }) => ({
-        url: `/v1/course/${id}`,
+        url: `/course/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Course"],
     }),
     getModules: builder.query({
-      query: () => "/v1/course/module",
+      query: () => "/course/module",
       providesTags: ["Course"],
     }),
     addModule: builder.mutation({
       query: ({ course_id, title, video, slide, assignment }) => ({
-        url: `/v1/course/${course_id}/module`,
+        url: `/course/${course_id}/module`,
         method: "POST",
         body: { course_id, title, video, slide, assignment },
       }),
@@ -55,7 +55,7 @@ export const courseSlice = createApi({
     updateModule: builder.mutation({
       query: ({ course_id, module_id, title, video, slide, assignment }) => {
         return {
-          url: `/v1/course/${course_id}/module/${module_id}`,
+          url: `/course/${course_id}/module/${module_id}`,
           method: "PUT",
           body: { course_id, title, video, slide, assignment },
         };
@@ -64,7 +64,7 @@ export const courseSlice = createApi({
     }),
     deleteModule: builder.mutation({
       query: ({ module_id }) => ({
-        url: `/v1/course/module/${module_id}`,
+        url: `/course/module/${module_id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Course"],
