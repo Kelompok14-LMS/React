@@ -46,12 +46,12 @@ const LandingPage = () => {
                     <img src={logo} alt="" style={{ "width": "100%", "objectFit" : "cover"}}/>
                     </a>
                 </div>
-                <div className="nav-search ms-3">
+                {/* <div className="nav-search ms-3">
                     <svg className="svg-search" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.7791 15.0943H16.6951L16.3109 14.7238C17.6556 13.1595 18.4652 11.1286 18.4652 8.91938C18.4652 3.99314 14.4721 0 9.54585 0C4.6196 0 0.626465 3.99314 0.626465 8.91938C0.626465 13.8456 4.6196 17.8388 9.54585 17.8388C11.7551 17.8388 13.786 17.0292 15.3503 15.6844L15.7208 16.0686V17.1527L22.5819 24L24.6265 21.9554L17.7791 15.0943ZM9.54585 15.0943C6.12904 15.0943 3.37089 12.3362 3.37089 8.91938C3.37089 5.50257 6.12904 2.74443 9.54585 2.74443C12.9627 2.74443 15.7208 5.50257 15.7208 8.91938C15.7208 12.3362 12.9627 15.0943 9.54585 15.0943Z" fill="#5F5F5F"/>
                     </svg>
                     <input type="text" className="searchBox" placeholder="Cari kelas..."/>
-                </div>
+                </div> */}
                 </div>
                 <div className="nav-menu d-flex">
                     <a href="#kelas" className="nav-link">Kelas</a>
