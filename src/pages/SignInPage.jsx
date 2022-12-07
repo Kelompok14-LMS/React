@@ -40,17 +40,17 @@ const SignInPage = () => {
         <>
             {loading ? <Loading/> : ''}
             <section className="section-hide p-0 overflow-hidden">
-                <Row className="align-items-center h-100vh">
+                <Row className="align-items-center h-100vh bg-white">
                     <Col>
-                        <Container>
+                        <Container className="d-flex justify-content-center">
                             <img src={logoLogin} style={{ "width": "35.188em"}} />
                         </Container>
                     </Col>
-                    <Col className="bg-dark h-100 d-flex align-items-start justify-content-start">
+                    <Col className="h-100 d-flex align-items-start justify-content-start bg-dark-blue px-3">
                         <Container>
                             <h1 className="main-title text-start">Selamat datang!</h1>
-                            <form action="" className="form-control text-start" onSubmit={handleSubmit}>
-                                <span className="text-danger">{err}</span>
+                            <form action="" className="form-control text-start bg-dark-blue" onSubmit={handleSubmit}>
+                                <span className="text-danger">{err}</span><br></br>
                                 <label className="form-label">Email</label>
                                 <input type="email" className="form-control main-input mt-4" placeholder="Masukkan email" name="email" value={form.email} onChange={handleChange} required/>
                                 <label className="form-label">Password</label>

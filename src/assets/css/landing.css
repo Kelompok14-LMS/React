@@ -140,7 +140,7 @@ section{
 }
 
 /* Desc */
-.bg-dark{
+.bg-dark-blue{
     background-color: #112D4E !important;
 }
 
@@ -202,8 +202,8 @@ section{
     display: flex;
     justify-content: space-between;
     position: absolute;
-    width: 120%;
-    left: -10%;
+    width: 110%;
+    left: -5%;
     top: 40%;
 }
 .quote{

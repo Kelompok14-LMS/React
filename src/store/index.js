@@ -1,13 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { courseSlice } from "./features/courseSlice";
 import { userSlice } from "./features/userSlice";
 
 const reducer = combineReducers({
-  [userSlice.reducerPath]: userSlice.reducer,
+  [courseSlice.reducerPath]: courseSlice.reducer,
 });
 
 const store = configureStore({
   reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([userSlice.middleware]),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([courseSlice.middleware, userSlice.middleware]),
 });
 
 export default store;
