@@ -1,0 +1,65 @@
+.h-100vh{
+    height: 100vh;
+}
+
+section{
+    width: 100vw;
+}
+
+.main-title{
+    font-size: 3em;
+    color: white;
+    font-weight: 500;
+}
+
+form{
+    padding: 0 0 0.75em 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid white !important;
+}
+
+.form-control{
+    background-color: #112D4E;
+}
+
+.main-input{
+    padding-left: 1.5em;;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-size: 1.25em;
+    height: 90px;
+    color: white;
+}
+
+.mt-4{
+    margin-top: 1.25em !important;
+}
+
+.form-check label{
+    font-size: 1.5em;
+    color: white;
+}
+
+.form-label{
+    font-size: 2em;
+    color: white;
+    margin-top: 1em;
+}
+
+p{
+    font-size: 1.5em;
+    /* color: white; */
+}
+
+.btn-submit{
+    border: 0;
+    padding: 0.65em 0;
+    background-color: #E4B548;
+    color: white;
+    font-size: 2em;
+}
+
+.text-gold{
+    color: #E4B548;
+}

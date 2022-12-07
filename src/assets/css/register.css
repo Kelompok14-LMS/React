@@ -1,0 +1,65 @@
+body{
+    overflow-x: hidden;
+    /* font-size: 1.3333333333333333vw; */
+}
+
+.h-100vh{
+    height: 100vh;
+}
+
+.section-hide .col{
+    overflow-y: auto;
+    padding: 6.25em 0;
+}
+
+section{
+    width: 100vw;
+}
+
+.main-title{
+    font-size: 3em;
+    color: white;
+    font-weight: 500;
+}
+
+.main-subtitle{
+    width: 70%;
+}
+
+form{
+    padding: 0 0 0.75em 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid white !important;
+}
+
+.form-control{
+    background-color: #112D4E;
+}
+
+.main-input{
+    padding-left: 1.5em;;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-size: 1.25em;
+    height: 90px;
+    color: white;
+}
+
+.main-input::placeholder{
+    color: white;
+}
+
+.mt-4{
+    margin-top: 1.25em !important;
+}
+
+.form-check label{
+    font-size: 1.5em;
+    color: white;
+}
+
+.main-info{
+    font-size: 1.5em;
+    color: white;
+}
