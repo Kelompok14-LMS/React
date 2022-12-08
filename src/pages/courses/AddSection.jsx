@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddModuleMutation } from "../../store/features/courseSlice";
+import { useAddModuleMutation } from "../../store/features/courses/moduleSlice";
 
 export default function AddSection() {
   const navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
@@ -30,10 +32,10 @@ export default function AddSection() {
     <>
       <div className="my-4">
         <Breadcrumb
-          prev1="Daftar Courses"
           link1="/courses"
+          prev1="Daftar Courses"
+          link2={`/detail-course/${id}`}
           prev2="Detail Course"
-          link2="/detail-course"
           current="Tambah Section"
         />
       </div>

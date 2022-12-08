@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddModuleMutation } from "../../store/features/courseSlice";
+import { useAddModuleMutation } from "../../store/features/courses/moduleSlice";
 
-export default function AddModule() {
+export default function AddMaterial() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState();

@@ -4,7 +4,8 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddCourseMutation, useGetCategoriesQuery } from "../../store/features/courseSlice";
+import { useGetCategoriesQuery } from "../../store/features/courses/categorySlice";
+import { useAddCourseMutation } from "../../store/features/courses/courseSlice";
 
 export default function AddCourse() {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ export default function AddCourse() {
             <Form.Label>Kategori</Form.Label>
             <Form.Select value={categoryId} onChange={onCategoryIdChange}>
               <option>Pilih disini</option>
-              {getCategories?.data?.map((item) => (
+              {getCategories?.map((item) => (
                 <option value={item.id} key={item.id}>
                   {item.name}
                 </option>
