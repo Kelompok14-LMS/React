@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useAddModuleMutation } from "../../store/features/courses/moduleSlice";
 
 export default function AddMaterial() {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState();
@@ -33,10 +34,10 @@ export default function AddMaterial() {
     <>
       <div className="my-4">
         <Breadcrumb
-          prev1="Daftar Courses"
           link1="/courses"
+          prev1="Daftar Courses"
+          link2={`/detail-course/${id}`}
           prev2="Detail Course"
-          link2="/detail-course"
           current="Tambah Materi"
         />
       </div>

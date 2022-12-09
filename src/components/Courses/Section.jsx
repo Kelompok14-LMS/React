@@ -3,7 +3,7 @@ import { Accordion, Button, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function Section() {
+export default function Section({ id }) {
   const handleDelete = () =>
     Swal.fire({
       title: "Are you sure?",
@@ -54,7 +54,7 @@ export default function Section() {
                 deserunt mollit anim id est laborum.
               </p>
 
-              <Button variant="warning" as={Link} to="/add-module">
+              <Button variant="warning" as={Link} to={`/add-material/${id}`}>
                 + Tambah Materi
               </Button>
             </div>

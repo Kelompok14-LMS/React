@@ -17,7 +17,7 @@ export default function SetupRouter() {
             <Route path="/detail-course/:id" element={<DetailCourse />} />
             <Route path="/add-course" element={<AddCourses />} />
             <Route path="/add-section/:id" element={<AddSection />} />
-            <Route path="/add-material" element={<AddMaterial />} />
+            <Route path="/add-material/:id" element={<AddMaterial />} />
           </Route>
         </Routes>
       </BrowserRouter>
