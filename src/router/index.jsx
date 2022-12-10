@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout";
+import AddAssignment from "../pages/courses/AddAssignment";
 import AddCourses from "../pages/courses/AddCourse";
 import AddMaterial from "../pages/courses/AddMaterial";
 import AddSection from "../pages/courses/AddSection";
@@ -18,6 +19,7 @@ export default function SetupRouter() {
             <Route path="/add-course" element={<AddCourses />} />
             <Route path="/add-section/:id" element={<AddSection />} />
             <Route path="/add-material/:id" element={<AddMaterial />} />
+            <Route path="/add-assignment/:id" element={<AddAssignment />} />
           </Route>
         </Routes>
       </BrowserRouter>

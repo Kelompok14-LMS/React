@@ -44,10 +44,15 @@ export default function Courses() {
         <div className="shadow bg-body rounded my-5" key={item.course_id}>
           <Row>
             <Col lg={6}>
-              <img src={item.thumbnail} alt="Course 1" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img
+                src={item.thumbnail}
+                alt="Course"
+                className="thumbnail-course"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </Col>
             <Col lg={6}>
-              <div className="p-5" style={{ display: "flex", flexDirection: "column" }}>
+              <div className="p-5" style={{ display: "flex", flexDirection: "column", minHeight: "400px" }}>
                 <p className="m-0 fw-semibold text-decoration-underline">{item.category}</p>
                 <div className="d-flex justify-content-between align-items-center">
                   <h2>{item.title}</h2>
@@ -55,13 +60,7 @@ export default function Courses() {
                     <FaTrashAlt />
                   </Button>
                 </div>
-                <p className="my-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                  officia deserunt mollit anim id est laborum.
-                </p>
+                <p className="my-3">{item?.description}</p>
 
                 <div className="mt-auto text-end">
                   <Button variant="warning" as={Link} to={`/detail-course/${item.course_id}`}>

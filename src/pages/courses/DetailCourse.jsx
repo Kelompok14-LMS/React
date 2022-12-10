@@ -81,7 +81,7 @@ export default function DetailCourse() {
         <Form onSubmit={handleSubmit} key={course?.course_id}>
           <div
             className="upload-gambar"
-            style={{ backgroundImage: `url("${previewThumbnail ? previewThumbnail : course?.thumbnail}")` }}
+            style={{ backgroundImage: `url(${previewThumbnail ? previewThumbnail : course?.thumbnail})` }}
           >
             <Form.Group className="mb-3 text-center">
               <Form.Control type="file" className="d-none" ref={hiddenFileInput} onChange={onThumbnailChange} />
@@ -148,9 +148,12 @@ export default function DetailCourse() {
           </div>
         </Form>
         <div className="ps-5 pe-5 pb-5">
-          <div className="my-4">
+          <div className="d-flex my-4 gap-3">
             <Button variant="warning" as={Link} to={`/add-section/${course?.course_id}`}>
               + Tambah Section
+            </Button>
+            <Button variant="outline-secondary" as={Link} to={`/add-assignment/${course?.course_id}`}>
+              + Tambah Assignment
             </Button>
           </div>
           <div>

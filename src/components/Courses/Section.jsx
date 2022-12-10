@@ -38,7 +38,7 @@ export default function Section({ id }) {
                   <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/add-section">
+                    <Dropdown.Item as={Link} to={`/add-section/${id}`}>
                       Edit Section
                     </Dropdown.Item>
                     <Dropdown.Item onClick={() => handleDelete()}>Hapus Section</Dropdown.Item>
@@ -68,7 +68,7 @@ export default function Section({ id }) {
                   <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/add-module">
+                    <Dropdown.Item as={Link} to={`/add-material/${id}`}>
                       Edit Materi
                     </Dropdown.Item>
                     <Dropdown.Item onClick={() => handleDelete()}>Hapus Materi</Dropdown.Item>
@@ -99,7 +99,7 @@ export default function Section({ id }) {
                   <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/add-module">
+                    <Dropdown.Item as={Link} to={`/add-material/${id}`}>
                       Edit Materi
                     </Dropdown.Item>
                     <Dropdown.Item onClick={() => handleDelete()}>Hapus Materi</Dropdown.Item>
@@ -128,19 +128,19 @@ export default function Section({ id }) {
 
       <Accordion>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>HTML for Beginner</Accordion.Header>
+          <Accordion.Header>Assignment</Accordion.Header>
           <Accordion.Body>
             <div>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <h6>Deskripsi Section</h6>
+                <h6>Resume Golang Currency</h6>
                 <Dropdown align="end">
                   <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/add-section">
-                      Edit Section
+                    <Dropdown.Item as={Link} to={`/add-assignment/${id}`}>
+                      Edit Assignment
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleDelete()}>Hapus Section</Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleDelete()}>Hapus Assignment</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
@@ -152,8 +152,6 @@ export default function Section({ id }) {
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum.
               </p>
-
-              <Button variant="warning">+ Tambah Materi</Button>
             </div>
           </Accordion.Body>
         </Accordion.Item>
