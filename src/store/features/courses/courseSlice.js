@@ -4,6 +4,10 @@ export const courseSlice = createApi({
   reducerPath: "courseSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM2FmMDljYTMtNjhlMy00ZjY4LWFmZGItOTA1ZmVjNDVhNTFjIiwibWVudG9yX2lkIjoiYjhhZDdiNDMtMTBjOC00NDk1LTgwZDQtNTkzZWIxY2Q1Y2E5Iiwicm9sZSI6Im1lbnRvciIsImV4cCI6MTY3MDY4NzAzOX0.F0Wb44QW4OT4xlw9fcXdmIqKozJM5D-YxQ68I3ne8x0",
+    },
   }),
   tagTypes: ["Course"],
   endpoints: (builder) => ({
@@ -19,7 +23,7 @@ export const courseSlice = createApi({
     }),
     addCourse: builder.mutation({
       query: (data) => ({
-        url: "/course",
+        url: "/courses",
         method: "POST",
         body: data,
       }),
@@ -36,8 +40,8 @@ export const courseSlice = createApi({
       invalidatesTags: ["Course"],
     }),
     deleteCourse: builder.mutation({
-      query: ({ id }) => ({
-        url: `/course/${id}`,
+      query: ({ course_id }) => ({
+        url: `/courses/${course_id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Course"],

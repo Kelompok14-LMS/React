@@ -3,12 +3,14 @@ import { Button, Col, Row } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useGetCoursesQuery } from "../../store/features/courses/courseSlice";
+import { useDeleteCourseMutation, useGetCoursesQuery } from "../../store/features/courses/courseSlice";
 
 export default function Courses() {
   const { data: courses } = useGetCoursesQuery();
 
-  const handleDelete = () =>
+  const [deleteCourse, result] = useDeleteCourseMutation();
+
+  const handleDelete = (id) =>
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -17,14 +19,19 @@ export default function Courses() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
+    }).then((item) => {
+      if (item.isConfirmed) {
+        deleteCourse({
+          course_id: id,
         });
+        if (result?.data?.status === "success") {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
+        }
       }
     });
 
@@ -56,7 +63,12 @@ export default function Courses() {
                 <p className="m-0 fw-semibold text-decoration-underline">{item.category}</p>
                 <div className="d-flex justify-content-between align-items-center">
                   <h2>{item.title}</h2>
-                  <Button variant="outline-dark" size="sm" style={{ height: "35px" }} onClick={() => handleDelete()}>
+                  <Button
+                    variant="outline-dark"
+                    size="sm"
+                    style={{ height: "35px" }}
+                    onClick={() => handleDelete(item.course_id)}
+                  >
                     <FaTrashAlt />
                   </Button>
                 </div>
