@@ -2,15 +2,20 @@ import '../assets/css/register.css'
 
 import { Row, Col, Container } from "react-bootstrap"
 import logoLogin from '../assets/img/logo-login.png'
-
 import Loading from '../components/Loading/Loading'
-
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRegisterMentorMutation } from '../store/features/userSlice'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import Swal from "sweetalert2";
 
 const SignUpPage = () => {
+    const navigate = useNavigate()
+
     const passRegex = /^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
+    const onLogin = Cookies.get("token")
     const [err, setErr] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -28,18 +33,50 @@ const SignUpPage = () => {
         })
     }
 
+    const [registerMentor, {isLoading, isSuccess, isError, errorRegister}] = useRegisterMentorMutation()
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if(!form.name && !form.email && !form.pass && !form.pass2){
             setErr("Form Tidak Boleh Ada Yang Kosong")
+        } else if (!emailRegex.test(form.email)){
+            setErr("Format email salah")
         } else if (!passRegex.test(form.password)){
             setErr("Password harus menggunakan huruf besar dan minimal 8 karakter")
         } else if(form.password != form.password2) {
             setErr("Password & Konfirmasi Berbeda")
         } else {
-            setLoading(true)
+            registerMentor(
+                {
+                    fullname: form.name,
+                    email: form.email,
+                    password: form.password
+                }
+            )
         }
     }
+
+    useEffect(() => {
+        if(onLogin){
+            navigate('/courses')
+        }
+        if(isLoading){
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+        if(isSuccess) {
+            Swal.fire({
+                title: "Daftar Berhasil",
+                text: "Silahkan Login",
+                icon: "success",
+            });
+            navigate('/login');
+        }
+        if(isError) {
+            alert(errorRegister.data.message)
+        }
+    },[isLoading, isSuccess, isError])
 
     return(
         <>

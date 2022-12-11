@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.loading .container {
+    display: flex;
+    justify-content: center;
+}
+
 .loading span{
     font-size: 8em;
     font-weight: bold;

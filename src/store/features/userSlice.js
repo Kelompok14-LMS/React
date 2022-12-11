@@ -5,23 +5,41 @@ export const userSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
   }),
-  tagTypes: ["User"],
+  tagTypes: ["Auth"],
   endpoints: (builder) => ({
-    getUser: builder.query({
-      query: (data) => "/user",
-      providesTags: ["User"],
-    }),
-    addUser: builder.mutation({
-      query: (data) => ({
-        url: "/user",
+    loginMentor: builder.mutation({
+      query: ({email, password}) => ({
+        url: "/auth/mentor/login",
         method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Course"],
+        body: {email, password}
+      })
     }),
-  }),
+    loginMentee: builder.mutation({
+        query: ({email, password}) => ({
+        url: "/auth/mentee/login",
+        method: "POST",
+        body: {email, password}
+      })
+    }),
+    registerMentor: builder.mutation({
+      query: ({fullname, email, password}) => ({
+        url: "/auth/mentor/register",
+        method: "POST",
+        body: {fullname, email, password},
+      }),
+    }),
+    registerMentee: builder.mutation({
+      query: ({fullname, email, password}) => ({
+        url: "/auth/mentee/register",
+        method: "POST",
+        body: {fullname, email, password},
+      }),
+    }),
+  })
 });
 export const {
-  useGetUserQuery,
-  useAddUserMutation,
+  useLoginMentorMutation,
+  useLoginMenteeMutation,
+  useRegisterMentorMutation,
+  useRegisterMenteeMutation
 } = userSlice;

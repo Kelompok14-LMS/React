@@ -2,15 +2,21 @@ import '../assets/css/login.css'
 
 import { Row, Col, Container } from "react-bootstrap"
 import logoLogin from '../assets/img/logo-login.png'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading/Loading'
-
 import { useState } from 'react'
+import { useLoginMentorMutation } from "../store/features/userSlice";
+import { useEffect } from 'react'
+import { setLogin } from '../utils/auth'
+import Cookies from 'js-cookie'
+import Swal from "sweetalert2";
 
 const SignInPage = () => {
+    const navigate = useNavigate();
+
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
+    const onLogin = Cookies.get("token")
     const [loading, setLoading] = useState(false)
     const [err, setErr] = useState("")
 
@@ -26,15 +32,39 @@ const SignInPage = () => {
         })
     }
 
+    const [loginMentor,{data: dataLogin, isLoading, isSuccess, isError, error: errorLogin}] = useLoginMentorMutation();
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if(!emailRegex.test(form.email)){
             setErr("Email yang dimasukkan tidak sesuai format")
         } else {
-            setLoading(true)
+            loginMentor(form)
             setErr("")
         }
     }
+
+    useEffect(() => {
+        if(onLogin){
+            navigate('/courses')
+        }
+        if(isLoading){
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+        if(isSuccess) {
+            Swal.fire({
+                title: "Login Berhasil",
+                text: "Selamat Datang",
+                icon: "success",
+            });
+            setLogin(dataLogin.data.token)
+        }
+        if(isError) {
+            alert(errorLogin.data.message)
+        }
+    }, [isLoading, isSuccess, isError, onLogin])
 
     return(
         <>

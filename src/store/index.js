@@ -4,6 +4,7 @@ import { userSlice } from "./features/userSlice";
 
 const reducer = combineReducers({
   [courseSlice.reducerPath]: courseSlice.reducer,
+  [userSlice.reducerPath]: userSlice.reducer
 });
 
 const store = configureStore({
