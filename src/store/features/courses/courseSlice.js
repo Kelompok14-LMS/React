@@ -22,6 +22,11 @@ export const courseSlice = createApi({
       transformResponse: (response) => response.data,
       providesTags: ["Course"],
     }),
+    getDetailCourse: builder.query({
+      query: (id) => `/courses/${id}/details`,
+      transformResponse: (response) => response.data,
+      providesTags: ["Course"],
+    }),
     addCourse: builder.mutation({
       query: (data) => ({
         url: "/courses",
@@ -50,6 +55,7 @@ export const courseSlice = createApi({
 export const {
   useGetCoursesQuery,
   useGetCourseQuery,
+  useGetDetailCourseQuery,
   useAddCourseMutation,
   useUpdateCourseMutation,
   useDeleteCourseMutation,

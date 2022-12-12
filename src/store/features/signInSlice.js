@@ -6,6 +6,7 @@ export const signInSlice = createApi({
   reducerPath: "signInSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
+    credentials: "include",
   }),
   tagTypes: ["SignIn"],
   endpoints: (builder) => ({

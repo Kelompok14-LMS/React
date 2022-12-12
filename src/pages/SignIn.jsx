@@ -1,13 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Banner from "../assets/img/banner-login.svg";
 import { useSignInMutation } from "../store/features/signInSlice";
 
 export default function SignIn() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,7 +29,7 @@ export default function SignIn() {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/courses");
+        window.location.reload();
       })
       .catch((err) => {
         alert(`${err?.data?.message}`);
