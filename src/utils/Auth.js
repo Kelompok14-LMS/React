@@ -14,8 +14,9 @@ const Auth = {
   },
   storeUserInfoToCookie(data) {
     if (!data.token) return null;
-    const { token } = data;
-    Cookies.set("token", token);
+    const { token, expires } = data;
+    const accessExpires = new Date(expires);
+    Cookies.set("token", token, { expires: accessExpires });
     return data;
   },
 };
