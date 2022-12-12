@@ -8,7 +8,7 @@ import { useDeleteCourseMutation, useGetCoursesQuery } from "../../store/feature
 export default function Courses() {
   const { data: courses } = useGetCoursesQuery();
 
-  const [deleteCourse, result] = useDeleteCourseMutation();
+  const [deleteCourse] = useDeleteCourseMutation();
 
   const handleDelete = (id) =>
     Swal.fire({
@@ -19,19 +19,27 @@ export default function Courses() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((item) => {
-      if (item.isConfirmed) {
-        deleteCourse({
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await deleteCourse({
           course_id: id,
-        });
-        if (result?.data?.status === "success") {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-            confirmButtonColor: "#3085d6",
+        })
+          .unwrap()
+          .then((_) => {
+            Swal.fire({
+              icon: "success",
+              title: "Course berhasil terhapus",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((_) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops",
+              text: "Sepertinya terjadi kesalahan...",
+            });
           });
-        }
       }
     });
 

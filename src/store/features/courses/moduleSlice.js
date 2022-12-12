@@ -1,9 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Auth from "../../../utils/Auth";
 import CONST from "../../../utils/constants";
+
 export const moduleSlice = createApi({
   reducerPath: "moduleSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
+    headers: {
+      Authorization: `Bearer ${Auth.getAccessToken()}`,
+    },
   }),
   tagTypes: ["Module"],
   endpoints: (builder) => ({
@@ -21,13 +26,11 @@ export const moduleSlice = createApi({
       invalidatesTags: ["Module"],
     }),
     updateModule: builder.mutation({
-      query: ({ module_id, course_id, title }) => {
-        return {
-          url: `/modules/${module_id}`,
-          method: "PUT",
-          body: { module_id, course_id, title },
-        };
-      },
+      query: ({ module_id, course_id, title }) => ({
+        url: `/modules/${module_id}`,
+        method: "PUT",
+        body: { module_id, course_id, title },
+      }),
       invalidatesTags: ["Module"],
     }),
     deleteModule: builder.mutation({

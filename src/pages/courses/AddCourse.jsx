@@ -7,6 +7,7 @@ import BgAddCourse from "../../assets/img/bg-add-course.png";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useGetCategoriesQuery } from "../../store/features/courses/categorySlice";
 import { useAddCourseMutation } from "../../store/features/courses/courseSlice";
+import { useGetProfileQuery } from "../../store/features/profileSlice";
 
 export default function AddCourse() {
   const navigate = useNavigate();
@@ -34,31 +35,36 @@ export default function AddCourse() {
     }
   }, [thumbnail]);
 
-  const [addCourse, result] = useAddCourseMutation();
+  const [addCourse] = useAddCourseMutation();
+  const { data: getProfile } = useGetProfileQuery();
 
-  console.log(result);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = new FormData();
     payload.append("thumbnail", thumbnail);
     payload.append("title", title);
     payload.append("category_id", categoryId);
     payload.append("description", description);
-    payload.append("mentor_id", "4e052982-b062-4696-b2da-31e94bda4442");
+    payload.append("mentor_id", getProfile?.id);
 
-    addCourse(payload);
-
-    if (result?.data?.status === "success") {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: result?.data?.message,
-        showConfirmButton: false,
-        timer: 1500,
+    await addCourse(payload)
+      .unwrap()
+      .then((_) => {
+        Swal.fire({
+          icon: "success",
+          title: "Course berhasil dibuat",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/courses");
+      })
+      .catch((_) => {
+        Swal.fire({
+          icon: "error",
+          text: "Data tidak boleh ada yang kosong!",
+          confirmButtonColor: "#3085d6",
+        });
       });
-      navigate("/courses");
-    }
   };
 
   const hiddenFileInput = useRef();

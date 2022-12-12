@@ -1,9 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Auth from "../../../utils/Auth";
 import CONST from "../../../utils/constants";
+
 export const materialSlice = createApi({
   reducerPath: "materialSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
+    headers: {
+      Authorization: `Bearer ${Auth.getAccessToken()}`,
+    },
   }),
   tagTypes: ["Material"],
   endpoints: (builder) => ({
@@ -21,13 +26,11 @@ export const materialSlice = createApi({
       invalidatesTags: ["Material"],
     }),
     updateMaterial: builder.mutation({
-      query: ({ material_id, module_id, title, description, video }) => {
-        return {
-          url: `/materials/${material_id}`,
-          method: "PUT",
-          body: { module_id, title, description, video },
-        };
-      },
+      query: ({ material_id, module_id, title, description, video }) => ({
+        url: `/materials/${material_id}`,
+        method: "PUT",
+        body: { module_id, title, description, video },
+      }),
       invalidatesTags: ["Material"],
     }),
     deleteMaterial: builder.mutation({

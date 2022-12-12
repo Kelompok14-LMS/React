@@ -1,19 +1,25 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "../components/Layout";
 import AddAssignment from "../pages/courses/AddAssignment";
 import AddCourses from "../pages/courses/AddCourse";
 import AddMaterial from "../pages/courses/AddMaterial";
 import AddSection from "../pages/courses/AddSection";
 import Courses from "../pages/courses/Courses";
 import DetailCourse from "../pages/courses/DetailCourse";
+import SignIn from "../pages/SignIn";
+import PrivateRoute from "./PrivateRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function SetupRouter() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route path="/login" element={<SignIn />} />
+          </Route>
+
+          <Route path="/" element={<PrivateRoute />}>
             <Route path="/courses" element={<Courses />} />
             <Route path="/detail-course/:id" element={<DetailCourse />} />
             <Route path="/add-course" element={<AddCourses />} />

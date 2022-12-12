@@ -1,9 +1,12 @@
 import React from "react";
-import { Container, Form, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/img/logo.svg";
+import Auth from "../utils/Auth";
 
 export default function TopBar() {
+  const navigate = useNavigate();
+
   return (
     <Navbar bg="white" expand="lg">
       <Container>
@@ -26,9 +29,12 @@ export default function TopBar() {
               Assignments
             </Nav.Link>
           </Nav>
-          <Nav.Link href="#action2" className="fw-bold text-black">
+          <Nav.Link href="#action2" className="fw-bold text-black me-2">
             Admin
           </Nav.Link>
+          <Button variant="danger" onClick={() => Auth.signOut(navigate)}>
+            Sign Out
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

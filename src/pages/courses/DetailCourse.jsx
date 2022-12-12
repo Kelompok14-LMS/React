@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { RiPencilFill } from "react-icons/ri";
 import Section from "../../components/courses/Section";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useGetCourseQuery, useUpdateCourseMutation } from "../../store/features/courses/courseSlice";
 import { useGetCategoriesQuery } from "../../store/features/courses/categorySlice";
+import Swal from "sweetalert2";
 
 export default function DetailCourse() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   // consume api
   const { data: course, isSuccess } = useGetCourseQuery(id);
@@ -31,7 +31,7 @@ export default function DetailCourse() {
       setCategoryId(course?.category); // category_id
       setDescription(course?.description);
     }
-  }, [course?.category, course?.description, course?.title, isSuccess]);
+  }, [course?.category, course?.description, course?.thumbnail, course?.title, isSuccess]);
 
   // handler change
   const onThumbnailChange = (e) => setThumbnail(e.target.files[0]);
@@ -51,19 +51,38 @@ export default function DetailCourse() {
   }, [thumbnail]);
 
   // update
-  const [updateCourse] = useUpdateCourseMutation();
+  const [updateCourse] = useUpdateCourseMutation(id);
 
-  const handleSubmit = (e) => {
+  const updateThumbnail = thumbnail ? thumbnail : course?.thumbnail;
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
     const payload = new FormData();
-    payload.append("thumbnail", thumbnail);
+    payload.append("thumbnail", updateThumbnail);
     payload.append("title", title);
-    payload.append("categoryId", categoryId);
+    payload.append("category_id", categoryId);
     payload.append("description", description);
 
-    updateCourse(payload);
-
-    navigate("/detail-course");
+    await updateCourse({ course_id: id, data: payload })
+      .unwrap()
+      .then((_) => {
+        Swal.fire({
+          icon: "success",
+          title: "Course berhasil diperbarui",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setToggleEdit(false);
+      })
+      .catch((_) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Terjadi kesalahan",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
 
   const hiddenFileInput = useRef();
@@ -78,7 +97,7 @@ export default function DetailCourse() {
         <Breadcrumb prev1="Daftar Courses" link1="/courses" current="Detail Course" />
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
-        <Form onSubmit={handleSubmit} key={course?.course_id}>
+        <Form onSubmit={handleUpdate} key={course?.course_id}>
           <div
             className="upload-gambar"
             style={{ backgroundImage: `url(${previewThumbnail ? previewThumbnail : course?.thumbnail})` }}
@@ -139,7 +158,7 @@ export default function DetailCourse() {
                   />
                 </Form.Group>
                 <div className="text-center">
-                  <Button variant="warning w-50" type="submit" onClick={() => setToggleEdit(false)}>
+                  <Button variant="warning w-50" type="submit">
                     Simpan perubahan
                   </Button>
                 </div>

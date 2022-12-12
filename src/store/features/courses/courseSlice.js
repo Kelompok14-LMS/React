@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Auth from "../../../utils/Auth";
 import CONST from "../../../utils/constants";
+
 export const courseSlice = createApi({
   reducerPath: "courseSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM2FmMDljYTMtNjhlMy00ZjY4LWFmZGItOTA1ZmVjNDVhNTFjIiwibWVudG9yX2lkIjoiYjhhZDdiNDMtMTBjOC00NDk1LTgwZDQtNTkzZWIxY2Q1Y2E5Iiwicm9sZSI6Im1lbnRvciIsImV4cCI6MTY3MDY4NzAzOX0.F0Wb44QW4OT4xlw9fcXdmIqKozJM5D-YxQ68I3ne8x0",
+      Authorization: `Bearer ${Auth.getAccessToken()}`,
     },
   }),
   tagTypes: ["Course"],
@@ -30,13 +31,11 @@ export const courseSlice = createApi({
       invalidatesTags: ["Course"],
     }),
     updateCourse: builder.mutation({
-      query: ({ id, thumbnail, title, category_id, description }) => {
-        return {
-          url: `/course/${id}`,
-          method: "PUT",
-          body: { thumbnail, title, category_id, description },
-        };
-      },
+      query: ({ course_id, data }) => ({
+        url: `/courses/${course_id}`,
+        method: "PUT",
+        body: data,
+      }),
       invalidatesTags: ["Course"],
     }),
     deleteCourse: builder.mutation({
