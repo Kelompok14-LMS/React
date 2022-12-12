@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import CONST from "../../utils/constants";
-export const courseSlice = createApi({
+import CONSTANT from "../../utils/constants";
+
+export const courseService = createApi({
   reducerPath: "courseSlice",
   baseQuery: fetchBaseQuery({
-    baseUrl: CONST.BASE_URL,
+    baseUrl: CONSTANT.BASE_URL,
     headers: {
       "Content-Type": "application/json",
     },
@@ -15,7 +16,7 @@ export const courseSlice = createApi({
     }),
     addCourse: builder.mutation({
       query: ({ mentor_id, thumbnail, title, category_id, description }) => ({
-        url: "/v1/course",
+        url: "/v1/courses",
         method: "POST",
         body: { mentor_id, thumbnail, title, category_id, description },
       }),
@@ -69,6 +70,7 @@ export const courseSlice = createApi({
     }),
   }),
 });
+
 export const {
   useGetCoursesQuery,
   useAddCourseMutation,
@@ -78,4 +80,4 @@ export const {
   useAddModuleMutation,
   useUpdateModuleMutation,
   useDeleteModuleMutation,
-} = courseSlice;
+} = courseService;

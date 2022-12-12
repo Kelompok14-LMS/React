@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
@@ -6,6 +6,7 @@ import { BsChevronLeft } from "react-icons/bs";
 
 export default function AddCourse() {
   const hiddenFileInput = useRef();
+    const [hoverImageCourse, setHoverImageCourse] = useState(false);
 
   const handleClick = (e) => {
     hiddenFileInput.current.click();
@@ -20,12 +21,30 @@ export default function AddCourse() {
           </Button>
         </div>
         <h2 className=" mx-auto text-white">Tambah Course</h2>
+        <div style={{ width: 102.91 }}/>
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form>
-          <div className="upload-gambar" style={{ backgroundImage: `url(${BgAddCourse})` }}>
+          <div
+            className="upload-gambar"
+            style={{
+              backgroundImage: `url(${BgAddCourse})`,
+              backgroundColor: hoverImageCourse ? "black" : "transparent",
+              transition: hoverImageCourse ? "0.5s" : "0.5s",
+            }}
+            onMouseEnter={() => {
+              setHoverImageCourse(true);
+            }}
+            onMouseLeave={() => {
+              setHoverImageCourse(false);
+            }}
+          >
             <Form.Group className="mb-3 text-center">
-              <Form.Control type="file" ref={hiddenFileInput} className="d-none" />
+              <Form.Control
+                type="file"
+                ref={hiddenFileInput}
+                className="d-none"
+              />
               <Button variant="outline-warning" onClick={handleClick}>
                 Upload Gambar
               </Button>

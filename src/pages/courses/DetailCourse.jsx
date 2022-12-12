@@ -9,6 +9,7 @@ import { BsChevronLeft } from "react-icons/bs";
 export default function DetailCourse() {
   const hiddenFileInput = useRef();
   const [toggleEdit, setToggleEdit] = useState(false);
+  const [hoverImageCourse, setHoverImageCourse] = useState(false);
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -23,12 +24,30 @@ export default function DetailCourse() {
           </Button>
         </div>
         <h3 className="mx-auto text-white">Detail Course</h3>
+        <div style={{ width: 102.91 }} />
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
         <Form>
-          <div className="upload-gambar" style={{ backgroundImage: `url(${BgAddCourse})` }}>
+          <div
+            className="upload-gambar"
+            style={{
+              backgroundImage: `url(${BgAddCourse})`,
+              backgroundColor: hoverImageCourse ? "black" : "transparent",
+              transition: hoverImageCourse ? "0.5s" : "0.5s",
+            }}
+            onMouseEnter={() => {
+              setHoverImageCourse(true);
+            }}
+            onMouseLeave={() => {
+              setHoverImageCourse(false);
+            }}
+          >
             <Form.Group className="mb-3 text-center">
-              <Form.Control type="file" ref={hiddenFileInput} className="d-none" />
+              <Form.Control
+                type="file"
+                ref={hiddenFileInput}
+                className="d-none"
+              />
               <Button variant="outline-warning" onClick={handleClick}>
                 Ganti Gambar
               </Button>
@@ -40,19 +59,28 @@ export default function DetailCourse() {
               <>
                 <div className="d-flex justify-content-between align-items-center mb-2">
                   <h3>Web Programming 101</h3>
-                  <Button variant="outline-dark p-1" onClick={() => setToggleEdit(true)}>
+                  <Button
+                    variant="outline-dark p-1"
+                    onClick={() => setToggleEdit(true)}
+                  >
                     <RiPencilFill size="25px" />
                   </Button>
                 </div>
                 <p>
-                  Web programming refers to the writing, markup and coding involved in Web development, which includes
-                  Web content, Web client and server scripting and network security. The most common languages used for
-                  Web programming are XML, HTML, JavaScript, Perl 5 and PHP. Web programming refers to the writing,
-                  markup and coding involved in Web development, which includes Web content, Web client and server
-                  scripting and network security. The most common languages used for Web programming are XML, HTML,
-                  JavaScript, Perl 5 and PHP. Web programming refers to the writing, markup and coding involved in Web
-                  development, which includes Web content, Web client and server scripting and network security. The
-                  most common languages used for Web programming are XML, HTML, JavaScript, Perl 5 and PHP.
+                  Web programming refers to the writing, markup and coding
+                  involved in Web development, which includes Web content, Web
+                  client and server scripting and network security. The most
+                  common languages used for Web programming are XML, HTML,
+                  JavaScript, Perl 5 and PHP. Web programming refers to the
+                  writing, markup and coding involved in Web development, which
+                  includes Web content, Web client and server scripting and
+                  network security. The most common languages used for Web
+                  programming are XML, HTML, JavaScript, Perl 5 and PHP. Web
+                  programming refers to the writing, markup and coding involved
+                  in Web development, which includes Web content, Web client and
+                  server scripting and network security. The most common
+                  languages used for Web programming are XML, HTML, JavaScript,
+                  Perl 5 and PHP.
                 </p>
               </>
             )}
@@ -60,7 +88,10 @@ export default function DetailCourse() {
             {toggleEdit && (
               <>
                 <div className="text-end">
-                  <Button variant="outline-warning" onClick={() => setToggleEdit(false)}>
+                  <Button
+                    variant="outline-warning"
+                    onClick={() => setToggleEdit(false)}
+                  >
                     Cancel
                   </Button>
                 </div>
@@ -70,10 +101,18 @@ export default function DetailCourse() {
                 </Form.Group>
                 <Form.Group className="mb-4">
                   <Form.Label>Deskripsi</Form.Label>
-                  <Form.Control as="textarea" placeholder="Klik disini" rows={7} />
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Klik disini"
+                    rows={7}
+                  />
                 </Form.Group>
                 <div className="text-center">
-                  <Button variant="warning w-50" type="submit" onClick={() => setToggleEdit(false)}>
+                  <Button
+                    variant="warning w-50"
+                    type="submit"
+                    onClick={() => setToggleEdit(false)}
+                  >
                     Simpan perubahan
                   </Button>
                 </div>

@@ -12,7 +12,6 @@ export default function Courses() {
           <h2 className="text-white">Daftar Courses</h2>
           <div>
             <Button variant="warning" as={Link} to="/add-course">
-              {" "}
               + Tambah Course
             </Button>
           </div>
