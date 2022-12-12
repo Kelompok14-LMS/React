@@ -78,6 +78,7 @@ export default function EditCourse({
           Simpan perubahan
         </Button>
       </div>
+      <hr />
     </>
   );
 }

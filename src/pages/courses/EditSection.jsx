@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddModuleMutation } from "../../store/features/courses/moduleSlice";
+import { useUpdateModuleMutation } from "../../store/features/courses/courseSlice";
 
-export default function AddSection() {
+export default function EditSection() {
+  const { state } = useLocation();
   const navigate = useNavigate();
 
-  const { id } = useParams();
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(state.title);
+  const [description, setDescription] = useState(state.description);
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
 
-  const [addModule] = useAddModuleMutation();
+  const [updateModule] = useUpdateModuleMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addModule({
-      course_id: id,
+    await updateModule({
+      module_id: state.module_id,
+      course_id: state.course_id,
       title: title,
       description: description,
     })
@@ -33,7 +33,7 @@ export default function AddSection() {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(`/detail-course/${id}`);
+        navigate(`/detail-course/${state.course_id}`);
       })
       .catch(() => {
         Swal.fire({
@@ -50,9 +50,9 @@ export default function AddSection() {
         <Breadcrumb
           link1="/courses"
           prev1="Daftar Courses"
-          link2={`/detail-course/${id}`}
+          link2={`/detail-course/${state.course_id}`}
           prev2="Detail Course"
-          current="Tambah Section"
+          current="Edit Section"
         />
       </div>
       <div className="shadow-lg bg-body p-5 rounded-3 mb-5">

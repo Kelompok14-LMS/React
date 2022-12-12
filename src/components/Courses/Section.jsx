@@ -1,9 +1,11 @@
 import React from "react";
 import { Accordion, Button, Dropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Section({ id, modules }) {
+  const navigate = useNavigate();
+
   const handleDelete = () =>
     Swal.fire({
       title: "Are you sure?",
@@ -26,8 +28,8 @@ export default function Section({ id, modules }) {
 
   return (
     <>
-      {modules?.map((item, index) => (
-        <Accordion className="mb-3" key={index}>
+      {modules?.map((item) => (
+        <Accordion className="mb-3" key={item.module_id}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>{item.title}</Accordion.Header>
 
@@ -39,7 +41,18 @@ export default function Section({ id, modules }) {
                     <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item as={Link} to={`/add-section/${id}`}>
+                      <Dropdown.Item
+                        onClick={() =>
+                          navigate(`/edit-section`, {
+                            state: {
+                              course_id: id,
+                              module_id: item.module_id,
+                              title: item.title,
+                              description: item.description,
+                            },
+                          })
+                        }
+                      >
                         Edit Section
                       </Dropdown.Item>
                       <Dropdown.Item onClick={() => handleDelete()}>Hapus Section</Dropdown.Item>
@@ -47,21 +60,15 @@ export default function Section({ id, modules }) {
                   </Dropdown>
                 </div>
 
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                  officia deserunt mollit anim id est laborum.
-                </p>
+                <p>{item.description}</p>
 
                 <Button variant="warning" as={Link} to={`/add-material/${id}`}>
                   + Tambah Materi
                 </Button>
               </div>
 
-              {item?.materials?.map((item, index) => (
-                <div key={index}>
+              {item?.materials?.map((item) => (
+                <div key={item.material_id}>
                   <hr />
                   <div>
                     <div className="d-flex justify-content-between align-items-center">

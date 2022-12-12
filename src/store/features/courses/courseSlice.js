@@ -50,6 +50,29 @@ export const courseSlice = createApi({
       }),
       invalidatesTags: ["Course"],
     }),
+    addModule: builder.mutation({
+      query: (data) => ({
+        url: `/modules`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Course"],
+    }),
+    updateModule: builder.mutation({
+      query: ({ module_id, course_id, title, description }) => ({
+        url: `/modules/${module_id}`,
+        method: "PUT",
+        body: { course_id, title, description },
+      }),
+      invalidatesTags: ["Course"],
+    }),
+    deleteModule: builder.mutation({
+      query: ({ module_id }) => ({
+        url: `/modules/${module_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Course"],
+    }),
   }),
 });
 export const {
@@ -59,4 +82,7 @@ export const {
   useAddCourseMutation,
   useUpdateCourseMutation,
   useDeleteCourseMutation,
+  useAddModuleMutation,
+  useUpdateModuleMutation,
+  useDeleteModuleMutation,
 } = courseSlice;
