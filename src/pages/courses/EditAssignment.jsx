@@ -52,7 +52,7 @@ export default function EditAssignment() {
           prev1="Daftar Courses"
           link2={`/detail-course/${state.course_id}`}
           prev2="Detail Course"
-          current="Tambah Assignment"
+          current="Edit Assignment"
         />
       </div>
       <div className="shadow-lg bg-body p-5 rounded-3 mb-5">

@@ -58,7 +58,7 @@ export default function EditMaterial() {
           prev1="Daftar Courses"
           link2={`/detail-course/${state.course_id}`}
           prev2="Detail Course"
-          current="Tambah Materi"
+          current="Edit Materi"
         />
       </div>
       <div className="shadow-lg bg-body p-5 rounded-3 mb-5">
