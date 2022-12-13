@@ -6,6 +6,7 @@ import AddMaterial from "../pages/courses/AddMaterial";
 import AddSection from "../pages/courses/AddSection";
 import Courses from "../pages/courses/Courses";
 import DetailCourse from "../pages/courses/DetailCourse";
+import EditAssignment from "../pages/courses/EditAssignment";
 import EditMaterial from "../pages/courses/EditMaterial";
 import EditSection from "../pages/courses/EditSection";
 import SignIn from "../pages/SignIn";
@@ -30,6 +31,7 @@ export default function SetupRouter() {
             <Route path="/add-material/" element={<AddMaterial />} />
             <Route path="/edit-material/" element={<EditMaterial />} />
             <Route path="/add-assignment/:id" element={<AddAssignment />} />
+            <Route path="/edit-assignment" element={<EditAssignment />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddAssignmentMutation } from "../../store/features/courses/assignmentSlice";
+import { useUpdateAssignmentMutation } from "../../store/features/courses/assignmentSlice";
 
-export default function AddAssignment() {
+export default function EditAssignment() {
+  const { state } = useLocation();
   const navigate = useNavigate();
 
-  const { id } = useParams();
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(state.title);
+  const [description, setDescription] = useState(state.description);
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
 
-  const [addAssignment] = useAddAssignmentMutation();
+  const [updateAssignment] = useUpdateAssignmentMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addAssignment({
-      course_id: id,
+    await updateAssignment({
+      assignment_id: state.assignment_id,
+      course_id: state.course_id,
       title: title,
       description: description,
     })
@@ -29,11 +29,11 @@ export default function AddAssignment() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Assignment berhasil dibuat",
+          title: "Assignment berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(`/detail-course/${id}`);
+        navigate(`/detail-course/${state.course_id}`);
       })
       .catch(() => {
         Swal.fire({
@@ -50,7 +50,7 @@ export default function AddAssignment() {
         <Breadcrumb
           link1="/courses"
           prev1="Daftar Courses"
-          link2={`/detail-course/${id}`}
+          link2={`/detail-course/${state.course_id}`}
           prev2="Detail Course"
           current="Tambah Assignment"
         />
