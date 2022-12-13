@@ -75,7 +75,7 @@ export default function Courses() {
                 <div className="d-flex justify-content-between align-items-center">
                   <h2>{item.title}</h2>
                   <Button
-                    variant="outline-dark"
+                    variant="outline-dark me-2"
                     size="sm"
                     style={{ height: "35px" }}
                     onClick={() => handleDelete(item.course_id)}

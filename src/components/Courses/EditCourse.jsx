@@ -44,7 +44,7 @@ export default function EditCourse({
   return (
     <>
       <div className="text-end">
-        <Button variant="outline-warning" onClick={() => handleCancel()}>
+        <Button variant="outline-warning border-dark" onClick={() => handleCancel()}>
           Cancel
         </Button>
       </div>

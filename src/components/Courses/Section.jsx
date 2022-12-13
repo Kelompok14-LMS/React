@@ -7,6 +7,7 @@ import {
   useDeleteMaterialByModuleMutation,
   useDeleteModuleMutation,
 } from "../../store/features/courses/courseSlice";
+import { BsGearFill } from "react-icons/bs";
 
 export default function Section({ id, modules }) {
   const navigate = useNavigate();
@@ -70,7 +71,9 @@ export default function Section({ id, modules }) {
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h6>Deskripsi Section</h6>
                   <Dropdown align="end">
-                    <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
+                    <Dropdown.Toggle variant="outline-warning border-dark">
+                      <BsGearFill />
+                    </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                       <Dropdown.Item
@@ -117,7 +120,9 @@ export default function Section({ id, modules }) {
                     <div className="d-flex justify-content-between align-items-center">
                       <h6>{item.title}</h6>
                       <Dropdown align="end">
-                        <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
+                        <Dropdown.Toggle variant="outline-warning border-dark">
+                          <BsGearFill />
+                        </Dropdown.Toggle>
 
                         <Dropdown.Menu>
                           <Dropdown.Item
@@ -166,7 +171,9 @@ export default function Section({ id, modules }) {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h6>Resume Golang Currency</h6>
                 <Dropdown align="end">
-                  <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
+                  <Dropdown.Toggle variant="outline-warning border-dark">
+                    <BsGearFill />
+                  </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     <Dropdown.Item as={Link} to={`/add-assignment/${id}`}>

@@ -7,6 +7,7 @@ import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useGetDetailCourseQuery, useUpdateCourseMutation } from "../../store/features/courses/courseSlice";
 import Swal from "sweetalert2";
 import EditCourse from "../../components/courses/EditCourse";
+import { fileReader } from "../../utils/fileReader";
 
 export default function DetailCourse() {
   // consume api
@@ -64,13 +65,7 @@ export default function DetailCourse() {
 
   // utils
   useEffect(() => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      setPreviewThumbnail(reader.result);
-    };
-    if (thumbnail) {
-      reader.readAsDataURL(thumbnail);
-    }
+    fileReader(setPreviewThumbnail, thumbnail);
   }, [thumbnail]);
 
   const hiddenFileInput = useRef();

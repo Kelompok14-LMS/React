@@ -8,6 +8,7 @@ import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useGetCategoriesQuery } from "../../store/features/courses/categorySlice";
 import { useAddCourseMutation } from "../../store/features/courses/courseSlice";
 import { useGetProfileQuery } from "../../store/features/profileSlice";
+import { fileReader } from "../../utils/fileReader";
 
 export default function AddCourse() {
   const navigate = useNavigate();
@@ -26,13 +27,7 @@ export default function AddCourse() {
   const onDescriptionChange = (e) => setDescription(e.target.value);
 
   useEffect(() => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      setPreviewThumbnail(reader.result);
-    };
-    if (thumbnail) {
-      reader.readAsDataURL(thumbnail);
-    }
+    fileReader(setPreviewThumbnail, thumbnail);
   }, [thumbnail]);
 
   const [addCourse] = useAddCourseMutation();
