@@ -6,6 +6,7 @@ import AddMaterial from "../pages/courses/AddMaterial";
 import AddSection from "../pages/courses/AddSection";
 import Courses from "../pages/courses/Courses";
 import DetailCourse from "../pages/courses/DetailCourse";
+import EditMaterial from "../pages/courses/EditMaterial";
 import EditSection from "../pages/courses/EditSection";
 import SignIn from "../pages/SignIn";
 import PrivateRoute from "./PrivateRoute";
@@ -26,7 +27,8 @@ export default function SetupRouter() {
             <Route path="/add-course" element={<AddCourses />} />
             <Route path="/add-section/:id" element={<AddSection />} />
             <Route path="/edit-section/" element={<EditSection />} />
-            <Route path="/add-material/:id" element={<AddMaterial />} />
+            <Route path="/add-material/" element={<AddMaterial />} />
+            <Route path="/edit-material/" element={<EditMaterial />} />
             <Route path="/add-assignment/:id" element={<AddAssignment />} />
           </Route>
         </Routes>

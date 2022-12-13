@@ -2,11 +2,20 @@ import React from "react";
 import { Accordion, Button, Dropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import {
+  useDeleteMaterialByIdMutation,
+  useDeleteMaterialByModuleMutation,
+  useDeleteModuleMutation,
+} from "../../store/features/courses/courseSlice";
 
 export default function Section({ id, modules }) {
   const navigate = useNavigate();
 
-  const handleDelete = () =>
+  const [deleteModule] = useDeleteModuleMutation();
+  const [deleteMaterialByModule] = useDeleteMaterialByModuleMutation();
+  const [deleteMaterialById] = useDeleteMaterialByIdMutation();
+
+  const handleDeleteModule = (module_id) =>
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -17,6 +26,29 @@ export default function Section({ id, modules }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        deleteModule(module_id);
+        deleteMaterialByModule(module_id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+        });
+      }
+    });
+
+  const handleDeleteMaterial = (material_id) =>
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMaterialById(material_id);
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -55,21 +87,32 @@ export default function Section({ id, modules }) {
                       >
                         Edit Section
                       </Dropdown.Item>
-                      <Dropdown.Item onClick={() => handleDelete()}>Hapus Section</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleDeleteModule(item.module_id)}>Hapus Section</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
 
                 <p>{item.description}</p>
 
-                <Button variant="warning" as={Link} to={`/add-material/${id}`}>
+                <Button
+                  variant="warning"
+                  onClick={() =>
+                    navigate(`/add-material`, {
+                      state: {
+                        course_id: id,
+                        module_id: item.module_id,
+                      },
+                    })
+                  }
+                >
                   + Tambah Materi
                 </Button>
               </div>
 
+              {item?.materials && <hr />}
+
               {item?.materials?.map((item) => (
                 <div key={item.material_id}>
-                  <hr />
                   <div>
                     <div className="d-flex justify-content-between align-items-center">
                       <h6>{item.title}</h6>
@@ -77,10 +120,25 @@ export default function Section({ id, modules }) {
                         <Dropdown.Toggle variant="outline-dark">Pengaturan</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item as={Link} to={`/add-material/${id}`}>
+                          <Dropdown.Item
+                            onClick={() =>
+                              navigate(`/edit-material`, {
+                                state: {
+                                  course_id: id,
+                                  module_id: item.module_id,
+                                  material_id: item.material_id,
+                                  title: item.title,
+                                  description: item.description,
+                                  video: item.url,
+                                },
+                              })
+                            }
+                          >
                             Edit Materi
                           </Dropdown.Item>
-                          <Dropdown.Item onClick={() => handleDelete()}>Hapus Materi</Dropdown.Item>
+                          <Dropdown.Item onClick={() => handleDeleteMaterial(item.material_id)}>
+                            Hapus Materi
+                          </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </div>
@@ -114,7 +172,7 @@ export default function Section({ id, modules }) {
                     <Dropdown.Item as={Link} to={`/add-assignment/${id}`}>
                       Edit Assignment
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleDelete()}>Hapus Assignment</Dropdown.Item>
+                    <Dropdown.Item>Hapus Assignment</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>

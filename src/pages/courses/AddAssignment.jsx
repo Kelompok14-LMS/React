@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddModuleMutation } from "../../store/features/courses/moduleSlice";
+import { useAddModuleMutation } from "../../store/features/courses/courseSlice";
 
 export default function AddAssignment() {
   const navigate = useNavigate();
 
   const { id } = useParams();
 
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);

@@ -3,21 +3,24 @@ import { Button, Form, Spinner } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddMaterialMutation } from "../../store/features/courses/courseSlice";
+import { useUpdateMaterialMutation } from "../../store/features/courses/courseSlice";
 
-export default function AddMaterial() {
+export default function EditMaterial() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [video, setVideo] = useState();
+  const [title, setTitle] = useState(state.title);
+  const [description, setDescription] = useState(state.description);
+  const [video, setVideo] = useState(state.video);
+  const [previewVideo, setPreviewVideo] = useState();
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onDescriptionChange = (e) => setDescription(e.target.value);
-  const onVideoChange = (e) => setVideo(e.target.files[0]);
+  const onVideoChange = (e) => setPreviewVideo(e.target.files[0]);
 
-  const [addMaterial, { isLoading }] = useAddMaterialMutation();
+  const [updateMaterial, { isLoading }] = useUpdateMaterialMutation();
+
+  const updateVideo = previewVideo ? previewVideo : video;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,9 +28,9 @@ export default function AddMaterial() {
     payload.append("module_id", state.module_id);
     payload.append("title", title);
     payload.append("description", description);
-    payload.append("video", video);
+    payload.append("video", updateVideo);
 
-    await addMaterial(payload)
+    await updateMaterial({ material_id: state.material_id, data: payload })
       .unwrap()
       .then(() => {
         Swal.fire({
@@ -80,11 +83,19 @@ export default function AddMaterial() {
             <div className="d-flex justify-content-between">
               <Form.Label>Video Materi</Form.Label>
             </div>
+
             {video && (
-              <video width="100%" height="500px" controls className="my-3">
-                <source src={URL.createObjectURL(video)} />
+              <video width="100%" height="500px" controls className="my-3 rounded">
+                <source src={video} />
               </video>
             )}
+
+            {previewVideo && (
+              <video width="100%" height="500px" controls className="my-3 rounded">
+                <source src={URL.createObjectURL(previewVideo)} />
+              </video>
+            )}
+
             <Form.Control
               type="file"
               name="video"

@@ -13,7 +13,7 @@ export const courseSlice = createApi({
   tagTypes: ["Course"],
   endpoints: (builder) => ({
     getCourses: builder.query({
-      query: () => "/courses",
+      query: (id) => `/courses/mentors/${id}`,
       transformResponse: (response) => response.data,
       providesTags: ["Course"],
     }),
@@ -67,8 +67,38 @@ export const courseSlice = createApi({
       invalidatesTags: ["Course"],
     }),
     deleteModule: builder.mutation({
-      query: ({ module_id }) => ({
+      query: (module_id) => ({
         url: `/modules/${module_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Course"],
+    }),
+    addMaterial: builder.mutation({
+      query: (data) => ({
+        url: `/materials`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Course"],
+    }),
+    updateMaterial: builder.mutation({
+      query: ({ material_id, data }) => ({
+        url: `/materials/${material_id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["Course"],
+    }),
+    deleteMaterialByModule: builder.mutation({
+      query: (module_id) => ({
+        url: `/materials/modules/${module_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Course"],
+    }),
+    deleteMaterialById: builder.mutation({
+      query: (material_id) => ({
+        url: `/materials/${material_id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Course"],
@@ -85,4 +115,8 @@ export const {
   useAddModuleMutation,
   useUpdateModuleMutation,
   useDeleteModuleMutation,
+  useAddMaterialMutation,
+  useUpdateMaterialMutation,
+  useDeleteMaterialByModuleMutation,
+  useDeleteMaterialByIdMutation,
 } = courseSlice;

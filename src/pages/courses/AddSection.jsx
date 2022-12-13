@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Breadcrumb from "../../components/courses/Breadcrumb";
-import { useAddModuleMutation } from "../../store/features/courses/moduleSlice";
+import { useAddModuleMutation } from "../../store/features/courses/courseSlice";
 
 export default function AddSection() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function AddSection() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Course berhasil dibuat",
+          title: "Section berhasil dibuat",
           showConfirmButton: false,
           timer: 1500,
         });

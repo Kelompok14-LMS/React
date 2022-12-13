@@ -4,9 +4,12 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDeleteCourseMutation, useGetCoursesQuery } from "../../store/features/courses/courseSlice";
+import { useGetProfileQuery } from "../../store/features/profileSlice";
 
 export default function Courses() {
-  const { data: courses } = useGetCoursesQuery();
+  const { data: getProfile } = useGetProfileQuery();
+
+  const { data: courses } = useGetCoursesQuery(getProfile?.id);
 
   const [deleteCourse] = useDeleteCourseMutation();
 
