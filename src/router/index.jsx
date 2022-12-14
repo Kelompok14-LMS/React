@@ -9,19 +9,13 @@ import DetailCourse from "../pages/courses/DetailCourse";
 import EditAssignment from "../pages/courses/EditAssignment";
 import EditMaterial from "../pages/courses/EditMaterial";
 import EditSection from "../pages/courses/EditSection";
-import SignIn from "../pages/SignIn";
 import PrivateRoute from "./PrivateRoute";
-import ProtectedRoute from "./ProtectedRoute";
 
 export default function SetupRouter() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ProtectedRoute />}>
-            <Route path="/login" element={<SignIn />} />
-          </Route>
-
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/courses" element={<Courses />} />
             <Route path="/detail-course/:id" element={<DetailCourse />} />
