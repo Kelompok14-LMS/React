@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { profileSlice } from "./features/profileSlice";
+import { profileSlice } from "./features/user/profileSlice";
 
 const reducer = combineReducers({
   [profileSlice.reducerPath]: profileSlice.reducer,
