@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Auth from "../../utils/Auth";
-import CONST from "../../utils/constants";
+import Auth from "../../../utils/Auth";
+import CONST from "../../../utils/constants";
 
 export const profileSlice = createApi({
   reducerPath: "profileSlice",

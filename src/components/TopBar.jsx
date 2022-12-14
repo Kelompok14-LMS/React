@@ -1,16 +1,14 @@
 import React from "react";
-import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { BsPersonFill } from "react-icons/bs";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/img/logo.svg";
-import { useGetProfileQuery } from "../store/features/profileSlice";
+import { useGetProfileQuery } from "../store/features/user/profileSlice";
 import Auth from "../utils/Auth";
 
 export default function TopBar() {
   const navigate = useNavigate();
   const { data: profile } = useGetProfileQuery();
-
-  console.log(profile);
 
   return (
     <Navbar bg="white" expand="lg">
@@ -31,17 +29,38 @@ export default function TopBar() {
               Assignments
             </Nav.Link>
           </Nav>
-          <NavDropdown title={profile?.fullname} align="end" className="fw-semibold">
-            <NavDropdown.Item className="text-center p-2">
-              <BsPersonFill className="me-2" size="25px" />
+
+          <NavDropdown
+            title={
+              <img
+                src={profile?.profile_picture}
+                className="rounded-circle"
+                style={{ width: "30px", height: "30px", objectFit: "cover" }}
+                alt=""
+              />
+            }
+            align="end"
+            className="fw-semibold"
+            id="basic-nav-dropdown"
+          >
+            <NavDropdown.Item disabled className="text-black mb-2">
+              <img
+                src={profile?.profile_picture}
+                className="rounded-circle"
+                style={{ width: "20px", height: "20px", objectFit: "cover", marginRight: "20px" }}
+                alt=""
+              />
+              {profile?.fullname}
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/profile">
+              <BsPersonCircle className="me-4" />
               Profile
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <div className="text-center mt-2 p-2">
-              <Button variant="danger" onClick={() => Auth.signOut(navigate)}>
-                Sign Out
-              </Button>
-            </div>
+            <NavDropdown.Item onClick={() => Auth.signOut(navigate)}>
+              <BsBoxArrowRight className="me-4" />
+              Sign Out
+            </NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>
       </Container>

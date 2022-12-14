@@ -29,7 +29,7 @@ export default function EditSection() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Course berhasil dibuat",
+          title: "Section berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });

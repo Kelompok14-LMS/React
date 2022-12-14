@@ -9,8 +9,8 @@ export default function AddMaterial() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [video, setVideo] = useState();
 
   const onTitleChange = (e) => setTitle(e.target.value);
@@ -66,7 +66,7 @@ export default function AddMaterial() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Deskripsi Section (Opsional)</Form.Label>
+            <Form.Label>Deskripsi Section</Form.Label>
             <Form.Control
               as="textarea"
               rows={7}

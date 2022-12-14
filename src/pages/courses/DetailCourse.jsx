@@ -80,7 +80,7 @@ export default function DetailCourse() {
         <Breadcrumb prev1="Daftar Courses" link1="/courses" current="Detail Course" />
       </div>
       <div className="shadow-lg bg-body rounded-3 mb-5">
-        <Form onSubmit={handleUpdate} key={detailCourse?.coursdetailC_id}>
+        <Form onSubmit={handleUpdate}>
           <div
             className="upload-gambar"
             style={{ backgroundImage: `url(${previewThumbnail ? previewThumbnail : detailCourse?.thumbnail})` }}

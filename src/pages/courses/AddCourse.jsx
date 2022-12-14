@@ -7,7 +7,7 @@ import BgAddCourse from "../../assets/img/bg-add-course.png";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useGetCategoriesQuery } from "../../store/features/courses/categorySlice";
 import { useAddCourseMutation } from "../../store/features/courses/courseSlice";
-import { useGetProfileQuery } from "../../store/features/profileSlice";
+import { useGetProfileQuery } from "../../store/features/user/profileSlice";
 import { fileReader } from "../../utils/fileReader";
 
 export default function AddCourse() {

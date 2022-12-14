@@ -2,8 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { assignmentSlice } from "./features/courses/assignmentSlice";
 import { categorySlice } from "./features/courses/categorySlice";
 import { courseSlice } from "./features/courses/courseSlice";
-import { profileSlice } from "./features/profileSlice";
-import { signInSlice } from "./features/signInSlice";
+import { profileSlice } from "./features/user/profileSlice";
+import { signInSlice } from "./features/user/signInSlice";
 
 const reducer = combineReducers({
   [assignmentSlice.reducerPath]: assignmentSlice.reducer,

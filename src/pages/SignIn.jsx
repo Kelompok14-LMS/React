@@ -4,7 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Banner from "../assets/img/banner-login.svg";
-import { useSignInMutation } from "../store/features/signInSlice";
+import { useSignInMutation } from "../store/features/user/signInSlice";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");

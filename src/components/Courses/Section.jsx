@@ -90,7 +90,7 @@ export default function Section({ id, modules }) {
     });
 
   return (
-    <>
+    <div className="section">
       {modules?.map((item) => (
         <Accordion className="mb-3" key={item.module_id}>
           <Accordion.Item eventKey="0">
@@ -232,6 +232,6 @@ export default function Section({ id, modules }) {
           </Accordion.Item>
         </Accordion>
       ))}
-    </>
+    </div>
   );
 }

@@ -35,7 +35,7 @@ export default function EditMaterial() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Materi berhasil dibuat",
+          title: "Materi berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });
