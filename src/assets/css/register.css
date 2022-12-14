@@ -53,3 +53,38 @@ body {
 #register .pass-info {
   font-size: 1em;
 }
+
+#register .btn-submit {
+  border: 0;
+  padding: 0.75em 0;
+  background-color: #e4b548;
+  color: #112d4e;
+  font-size: 1.25em;
+  border-radius: 8px;
+}
+
+#register .text-gold {
+  color: #e4b548;
+}
+
+#register .main-input {
+  padding-left: 1.5em;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 1.25em !important;
+  height: 56px;
+  color: #112d4e;
+  background-color: white;
+}
+
+#register .main-title {
+  font-size: 3em;
+  color: white;
+  font-weight: 500;
+}
+
+#register .form-label {
+  font-size: 2em;
+  color: white;
+  margin-top: 0.5em;
+}

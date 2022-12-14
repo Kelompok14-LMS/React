@@ -19,7 +19,7 @@
   filter: invert(50%);
 }
 
-.dropdown-toggle::after {
+.section .dropdown-toggle::after {
   display: none !important;
 }
 
