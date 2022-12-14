@@ -2,9 +2,9 @@ import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../assets/img/logo.svg";
-import { useGetProfileQuery } from "../store/features/profileSlice";
+import { useGetProfileQuery } from "../store/features/user/profileSlice";
 import Auth from "../utils/Auth";
+import Logo from "../assets/img/logo.svg";
 
 export default function TopBar() {
   const navigate = useNavigate();

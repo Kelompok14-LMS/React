@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useSignInMutation } from "../store/features/user/signInSlice";
 import Banner from "../assets/img/banner-login.svg";
-import { useSignInMutation } from "../store/features/signInSlice";
+import Swal from "sweetalert2";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");

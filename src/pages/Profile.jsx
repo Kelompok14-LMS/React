@@ -1,15 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import {
-  useGetProfileQuery,
-  useUpdatePasswordMutation,
-  useUpdateProfileMutation,
-} from "../store/features/profileSlice";
 import { useEffect } from "react";
 import { fileReader } from "../utils/fileReader";
 import DefaultAvatar from "../assets/img/default-avatar.png";
 import Swal from "sweetalert2";
 import moment from "moment/moment";
+import {
+  useGetProfileQuery,
+  useUpdatePasswordMutation,
+  useUpdateProfileMutation,
+} from "../store/features/user/profileSlice";
 
 export default function Profile() {
   const { data: profile, isSuccess } = useGetProfileQuery();
