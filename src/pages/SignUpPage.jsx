@@ -60,7 +60,7 @@ const SignUpPage = () => {
         .catch((err) => {
           Swal.fire({
             title: "Login Gagal",
-            text: `${err.data.message}`,
+            text: `${err?.data?.message}`,
             icon: "error",
           });
         });
