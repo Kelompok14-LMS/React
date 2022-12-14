@@ -37,14 +37,14 @@ const SignUpPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(!form.name && !form.email && !form.pass && !form.pass2){
+        if(!form.name && !form.email && !form.pass){
             setErr("Form Tidak Boleh Ada Yang Kosong")
         } else if (!emailRegex.test(form.email)){
             setErr("Format email salah")
         } else if (!passRegex.test(form.password)){
             setErr("Password harus menggunakan huruf besar dan minimal 8 karakter")
-        } else if(form.password != form.password2) {
-            setErr("Password & Konfirmasi Berbeda")
+        // } else if(form.password != form.password2) {
+        //     setErr("Password & Konfirmasi Berbeda")
         } else {
             registerMentor(
                 {
@@ -90,13 +90,17 @@ const SignUpPage = () => {
                     </Col>
                     <Col className="bg-dark-blue h-100 d-flex align-items-center justify-content-start text-white px-3">
                         <Container>
-                            <h1 className="main-title text-start">Ayo Jadi Mentor</h1>
+                            <h1 className="main-title text-start">Ayo Jadi Mentor!</h1>
                             <form action="" className="form-control text-start bg-dark-blue border-0">
-                                <input type="text" className="form-control main-input mt-4" placeholder="Nama Lengkap" name="name" value={form.name} onChange={onChange} required/>
-                                <input type="email" className="form-control main-input mt-4" placeholder="Email" name="email" value={form.email} onChange={onChange} required/>
-                                <input type="password" className="form-control main-input mt-4" placeholder="Password" name="password" value={form.password} onChange={onChange} required/>
+                                <label className="form-label">Nama Lengkap</label>
+                                <input type="text" className="form-control main-input mt-0" placeholder="Nama Lengkap" name="name" value={form.name} onChange={onChange} required/>
+                                <label className="form-label">Email</label>
+                                <input type="email" className="form-control main-input mt-0" placeholder="Email" name="email" value={form.email} onChange={onChange} required/>
+                                <label className="form-label">Password</label>
+                                <input type="password" className="form-control main-input mt-0" placeholder="Password" name="password" value={form.password} onChange={onChange} required/>
                                 <p className="pass-info text-white text-uppercase">Password harus menggunakan huruf besar dan minimal 8 karakter</p>
-                                <input type="password" className="form-control main-input mt-4" placeholder="Konfirmasi Password" name="password2" value={form.password2} onChange={onChange} required/>
+                                {/* <label className="form-label">Konfirmasi</label>
+                                <input type="password" className="form-control main-input mt-0" placeholder="Konfirmasi Password" name="password2" value={form.password2} onChange={onChange} required/> */}
                                 <p className="text-uppercase text-danger">{err}</p>
                                 <button type="submit" className="btn-submit w-100 mt-4" onClick={handleSubmit}>Daftar</button>
                             </form>

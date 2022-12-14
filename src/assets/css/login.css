@@ -45,12 +45,11 @@ section{
 .form-label{
     font-size: 2em;
     color: white;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 p{
     font-size: 1.5em;
-    /* color: white; */
 }
 
 .btn-submit{

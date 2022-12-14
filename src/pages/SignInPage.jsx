@@ -86,10 +86,10 @@ const SignInPage = () => {
                             <form action="" className="form-control text-start bg-dark-blue form-login" onSubmit={handleSubmit}>
                                 <span className="text-danger">{err}</span><br></br>
                                 <label className="form-label">Email</label>
-                                <input type="email" className="form-control main-input mt-4" placeholder="Masukkan email" name="email" value={form.email} onChange={handleChange} required/>
+                                <input type="email" className="form-control main-input mt-0" placeholder="Masukkan email" name="email" value={form.email} onChange={handleChange} required/>
                                 <label className="form-label">Password</label>
-                                <input type="password" className="form-control main-input mt-4" placeholder="Masukkan password" name="password"value={form.password} onChange={handleChange} required/>
-                                <div className="form-check d-flex align-items-center p-0 mt-4">
+                                <input type="password" className="form-control main-input mt-0" placeholder="Masukkan password" name="password"value={form.password} onChange={handleChange} required/>
+                                <div className="form-check d-flex align-items-center p-0 mt-2">
                                 <input type="checkbox" id="vehicle1" name="remind" value="Bike" style={{ "width": "26px", "height": "26px" }}/>
                                 <label for="remind" className="ms-2"> Ingat Aku ?</label>
                                 </div>

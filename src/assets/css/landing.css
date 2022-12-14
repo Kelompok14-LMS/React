@@ -28,9 +28,9 @@ section{
 }
 
 .container{
-    width: 90%;
+    width: 90% !important;
     margin: 0 auto;
-    max-width: 1240px;
+    max-width: 1240px !important;
 }
 
 .container.nav{
