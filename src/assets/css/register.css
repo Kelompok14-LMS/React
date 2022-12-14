@@ -9,7 +9,7 @@ body{
 
 .section-hide .col{
     overflow-y: auto;
-    padding: 6.25em 0;
+    padding: 0 0;
 }
 
 section{
@@ -26,28 +26,16 @@ section{
     width: 70%;
 }
 
-form{
+.form-login{
     padding: 0 0 0.75em 0 !important;
     border-radius: 0 !important;
     border: 0 !important;
     border-bottom: 1px solid white !important;
 }
 
-.form-control{
-    background-color: #112D4E !important;
-}
-
-.main-input{
-    padding-left: 1.5em !important;
-    border: 1px solid white !important;
-    border-radius: 4px !important;
-    font-size: 1.25em !important;
-    height: 90px !important;
-    color: white !important;
-}
 
 .main-input::placeholder{
-    color: white !important;
+    color: #112D4E !important;
 }
 
 .mt-4{
@@ -62,4 +50,8 @@ form{
 .main-info{
     font-size: 1.5em;
     color: white;
+}
+
+.pass-info{
+    font-size: 1em;
 }

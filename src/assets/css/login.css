@@ -12,7 +12,7 @@ section{
     font-weight: 500;
 }
 
-form{
+.form-login{
     padding: 0 0 0.75em 0 !important;
     border-radius: 0 !important;
     border: 0 !important;
@@ -27,9 +27,10 @@ form{
     padding-left: 1.5em;;
     border: 1px solid white;
     border-radius: 4px;
-    font-size: 1.25em;
-    height: 90px;
-    color: white;
+    font-size: 1.25em !important;
+    height: 56px;
+    color: #112D4E;
+    background-color: white
 }
 
 .mt-4{
@@ -54,10 +55,12 @@ p{
 
 .btn-submit{
     border: 0;
-    padding: 0.65em 0;
+    padding: 0.75em 0;
     background-color: #E4B548;
-    color: white;
-    font-size: 2em;
+    color: #112D4E;
+    font-size: 1.25em;
+    /* font-weight: bold; */
+    border-radius: 8px;;
 }
 
 .text-gold{

@@ -2,7 +2,7 @@ body {
   background-image: url("./assets/img/background.png");
   background-position: center;
   background-repeat: repeat;
-  font-size: 1.3333333333333333vw;
+  font-size: 1.3333333333333333vw !important;
   overflow-x: hidden;
 }
 

@@ -62,7 +62,11 @@ const SignInPage = () => {
             setLogin(dataLogin.data.token)
         }
         if(isError) {
-            alert(errorLogin.data.message)
+            Swal.fire({
+                title: "Login Gagal",
+                text: "User Tidak Ditemukan",
+                icon: "error",
+            });
         }
     }, [isLoading, isSuccess, isError, onLogin])
 
@@ -76,10 +80,10 @@ const SignInPage = () => {
                             <img src={logoLogin} style={{ "width": "35.188em"}} />
                         </Container>
                     </Col>
-                    <Col className="h-100 d-flex align-items-start justify-content-start bg-dark-blue px-3">
+                    <Col className="h-100 d-flex align-items-center justify-content-start bg-dark-blue px-3">
                         <Container>
                             <h1 className="main-title text-start">Selamat datang!</h1>
-                            <form action="" className="form-control text-start bg-dark-blue" onSubmit={handleSubmit}>
+                            <form action="" className="form-control text-start bg-dark-blue form-login" onSubmit={handleSubmit}>
                                 <span className="text-danger">{err}</span><br></br>
                                 <label className="form-label">Email</label>
                                 <input type="email" className="form-control main-input mt-4" placeholder="Masukkan email" name="email" value={form.email} onChange={handleChange} required/>

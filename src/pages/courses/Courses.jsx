@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CourseImg1 from "../../assets/img/course-img-1.svg";
@@ -28,6 +28,7 @@ export default function Courses() {
 
   return (
     <>
+      <Container>
       <div className="d-flex justify-content-between mt-5">
         <h2 className="text-white">Daftar Courses</h2>
         <div>
@@ -135,6 +136,7 @@ export default function Courses() {
           </Col>
         </Row>
       </div>
+      </Container>
     </>
   );
 }
