@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Auth from "../../../utils/iniAuth";
+import Auth from "../../../utils/Auth";
 import CONST from "../../../utils/constants";
 
 export const userSlice = createApi({
