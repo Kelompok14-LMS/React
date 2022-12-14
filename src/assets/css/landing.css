@@ -39,21 +39,8 @@ section {
   max-width: 1400px;
 }
 
-.navbar {
-  background-color: white;
-  position: sticky !important;
-  top: 0;
-  padding: 1.5em 0;
-  width: 100%;
-  z-index: 3;
-}
-
 .nav-logo {
-  width: 6.875em;
-}
-
-.nav-search {
-  position: relative;
+  width: 6em;
 }
 
 .svg-search {
@@ -69,14 +56,6 @@ section {
   border-radius: 0.5em;
   border: 1px solid #888;
   padding: 1em 0 1em 4em;
-}
-
-.nav-link {
-  font-weight: 500 !important;
-  font-size: 1.5em !important;
-  margin: 0 0.5em !important;
-  color: black !important;
-  padding: 0 !important;
 }
 
 .nav-button a {

@@ -1,13 +1,28 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { userSlice } from "./features/userSlice";
+import { assignmentSlice } from "./features/courses/assignmentSlice";
+import { categorySlice } from "./features/courses/categorySlice";
+import { courseSlice } from "./features/courses/courseSlice";
+import { profileSlice } from "./features/user/profileSlice";
+import { userSlice } from "./features/user/userSlice";
 
 const reducer = combineReducers({
+  [assignmentSlice.reducerPath]: assignmentSlice.reducer,
+  [categorySlice.reducerPath]: categorySlice.reducer,
+  [courseSlice.reducerPath]: courseSlice.reducer,
+  [profileSlice.reducerPath]: profileSlice.reducer,
   [userSlice.reducerPath]: userSlice.reducer,
 });
 
 const store = configureStore({
   reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([userSlice.middleware]),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      [assignmentSlice.middleware],
+      [categorySlice.middleware],
+      [courseSlice.middleware],
+      [profileSlice.middleware],
+      [userSlice.middleware]
+    ),
 });
 
 export default store;

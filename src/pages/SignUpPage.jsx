@@ -4,7 +4,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import logoLogin from "../assets/img/logo-login.png";
 import Loading from "../components/Loading/Loading";
 import { useState } from "react";
-import { useRegisterMentorMutation } from "../store/features/userSlice";
+import { useRegisterMentorMutation } from "../store/features/user/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -68,7 +68,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <>
+    <div id="register">
       {isLoading ? <Loading /> : ""}
       <section className="section-hide p-0 overflow-hidden">
         <Row className="align-items-center h-100vh bg-white">
@@ -129,7 +129,7 @@ const SignUpPage = () => {
           </Col>
         </Row>
       </section>
-    </>
+    </div>
   );
 };
 
