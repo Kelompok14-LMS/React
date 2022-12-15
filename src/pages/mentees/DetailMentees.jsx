@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Button, Table } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import elipseImage from "../../assets/img/Ellipse-3.png";
 import { dataMentees } from "../../dummy-data/data-mentees";
 import Swal from "sweetalert2";
+import { useLocation } from "react-router-dom";
+import {useGetMenteesCoursesQuery} from '../../services/menteesService'
 
 export default function () {
-  const [datas, setDatas] = useState(dataMentees);
+
+  const location = useLocation();
+
   const [hoverLeft, setHoverLeft] = useState(false);
   const [hoverRight, setHoverRight] = useState(false);
+
+
+
+    const { data: mentees } = useGetMenteesCoursesQuery({course_id: location.state.course_id});
+
+  useEffect(() => {
+    // console.log(location.state.course_id);
+    console.log(mentees);
+  }, [mentees]);
 
   const swallAlert = () => {
     Swal.fire({
@@ -25,10 +38,10 @@ export default function () {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Terhapus!",
-          text: "Mentees lu dah ke hapus",
+          text: "Mentees berhasil di hapus aksesnya",
           icon: "success",
           confirmButtonColor: "#0D6EFD",
-          confirmButtonText: "Menyebalkan",
+          confirmButtonText: "Oke",
         });
       }
     });
@@ -41,7 +54,7 @@ export default function () {
           <div className="d-flex align-items-center px-26 py-8">
             <h4 className="mb-0">
               Semua Mentees |{" "}
-              <small style={{ fontSize: 15 }}>{datas.length} Totals</small>
+              <small style={{ fontSize: 15 }}>{mentees?.data.total} Totals</small>
             </h4>
           </div>
         </div>
@@ -51,7 +64,7 @@ export default function () {
         <Table border hover>
           <tbody>
             <div style={{ marginBottom: 12 }} className="mt-2 px-3">
-              {datas.map((data) => (
+              {mentees?.data.mentees?.map((data) => (
                 <div
                   style={{
                     borderBottomWidth: 1,
@@ -139,7 +152,7 @@ export default function () {
               }}
               size={26.85}
               onClick={() => {
-                console.log("Hello Asu");
+                console.log("Hello");
               }}
               onMouseEnter={() => {
                 setHoverRight(true);

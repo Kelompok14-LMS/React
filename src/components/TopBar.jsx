@@ -6,7 +6,7 @@ import elipseImage from "../assets/img/Ellipse-3.png";
 export default function TopBar() {
   return (
     <Navbar bg="white" expand="lg">
-      <Container className="d-flex justify-content-between py-0 px-0">
+      <Container className="d-flex justify-content-between s">
         <Navbar.Brand href="#">
           <img
             src={Logo}

@@ -1,13 +1,15 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { courseService } from "../services/courseService";
+import { coursesService } from "../services/coursesService";
+import { menteesService } from "../services/menteesService";
 
 const reducer = combineReducers({
-  [courseService.reducerPath]: courseService.reducer,
+  [coursesService.reducerPath]: coursesService.reducer,
+  [menteesService.reducerPath]: menteesService.reducer,
 });
 
 const store = configureStore({
   reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([courseService.middleware]),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([coursesService.middleware], [menteesService.middleware]),
 });
 
-export default store;
+export { store };
