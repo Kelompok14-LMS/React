@@ -9,6 +9,8 @@ export default function EditSection() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
+  console.log(state);
+
   const [title, setTitle] = useState(state.title);
   const [description, setDescription] = useState(state.description);
 
@@ -29,7 +31,8 @@ export default function EditSection() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Section berhasil diperbarui",
+          title: "Berhasil!",
+          text: "Section berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -38,6 +41,7 @@ export default function EditSection() {
       .catch(() => {
         Swal.fire({
           icon: "error",
+          title: "Berhasil!",
           text: "Data tidak boleh ada yang kosong!",
           confirmButtonColor: "#3085d6",
         });

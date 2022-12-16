@@ -46,7 +46,8 @@ export default function DetailCourse() {
       .then((_) => {
         Swal.fire({
           icon: "success",
-          title: "Course berhasil diperbarui",
+          title: "Berhasil!",
+          text: "Course berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -56,7 +57,7 @@ export default function DetailCourse() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Terjadi kesalahan",
+          text: "Sepertinya terjadi kesalahan",
           showConfirmButton: false,
           timer: 1500,
         });

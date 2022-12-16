@@ -47,7 +47,8 @@ export default function AddCourse() {
       .then((_) => {
         Swal.fire({
           icon: "success",
-          title: "Course berhasil dibuat",
+          title: "Berhasil!",
+          text: "Course berhasil dibuat",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -56,6 +57,7 @@ export default function AddCourse() {
       .catch((_) => {
         Swal.fire({
           icon: "error",
+          title: "Gagal!",
           text: "Data tidak boleh ada yang kosong!",
           confirmButtonColor: "#3085d6",
         });

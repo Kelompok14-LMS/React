@@ -32,7 +32,8 @@ export default function AddMaterial() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Materi berhasil dibuat",
+          title: "Berhasil!",
+          text: "Materi berhasil dibuat",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -41,6 +42,7 @@ export default function AddMaterial() {
       .catch(() => {
         Swal.fire({
           icon: "error",
+          title: "Gagal!",
           text: "Data tidak boleh ada yang kosong!",
           confirmButtonColor: "#3085d6",
         });

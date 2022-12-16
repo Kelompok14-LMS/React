@@ -22,20 +22,21 @@ export default function Section({ id, modules }) {
 
   const handleDeleteModule = (module_id) =>
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Yakin untuk menghapus?",
+      text: "Anda tidak akan dapat mengembalikan ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteModule(module_id);
         deleteMaterialByModule(module_id);
         Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
+          title: "Terhapus!",
+          text: "File telah terhapus!",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
@@ -45,19 +46,20 @@ export default function Section({ id, modules }) {
 
   const handleDeleteMaterial = (material_id) =>
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Yakin untuk menghapus?",
+      text: "Anda tidak akan dapat mengembalikan ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteMaterialById(material_id);
         Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
+          title: "Terhapus!",
+          text: "File telah terhapus!",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
@@ -70,19 +72,20 @@ export default function Section({ id, modules }) {
 
   const handleDeleteAssignment = (assignment_id) =>
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Yakin untuk mengahpus?",
+      text: "Anda tidak akan dapat mengembalikan ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteAssignment(assignment_id);
         Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
+          title: "Terhapus!",
+          text: "File telah terhapus!",
           icon: "success",
           confirmButtonColor: "#3085d6",
         });

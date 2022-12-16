@@ -29,7 +29,8 @@ export default function AddSection() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Section berhasil dibuat",
+          title: "Berhasil!",
+          text: "Section berhasil dibuat",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -38,6 +39,7 @@ export default function AddSection() {
       .catch(() => {
         Swal.fire({
           icon: "error",
+          title: "Gagal!",
           text: "Data tidak boleh ada yang kosong!",
           confirmButtonColor: "#3085d6",
         });

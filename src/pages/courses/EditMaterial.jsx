@@ -35,7 +35,8 @@ export default function EditMaterial() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Materi berhasil diperbarui",
+          title: "Berhasil!",
+          text: "Materi berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -44,6 +45,7 @@ export default function EditMaterial() {
       .catch(() => {
         Swal.fire({
           icon: "error",
+          title: "Gagal!",
           text: "Data tidak boleh ada yang kosong!",
           confirmButtonColor: "#3085d6",
         });

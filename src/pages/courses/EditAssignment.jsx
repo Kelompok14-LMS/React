@@ -29,7 +29,8 @@ export default function EditAssignment() {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Assignment berhasil diperbarui",
+          title: "Berhasil!",
+          text: "Assignment berhasil diperbarui",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -38,6 +39,7 @@ export default function EditAssignment() {
       .catch(() => {
         Swal.fire({
           icon: "error",
+          title: "Gagal!",
           text: "Data tidak boleh ada yang kosong!",
           confirmButtonColor: "#3085d6",
         });

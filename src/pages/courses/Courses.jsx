@@ -15,13 +15,14 @@ export default function Courses() {
 
   const handleDelete = (id) =>
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Yakin untuk menghapus?",
+      text: "Anda tidak akan dapat mengembalikan ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
     }).then(async (result) => {
       if (result.isConfirmed) {
         await deleteCourse({
@@ -31,7 +32,8 @@ export default function Courses() {
           .then((_) => {
             Swal.fire({
               icon: "success",
-              title: "Course berhasil terhapus",
+              title: "Berhasil!",
+              text: "Course berhasil terhapus",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -39,8 +41,8 @@ export default function Courses() {
           .catch((_) => {
             Swal.fire({
               icon: "error",
-              title: "Oops",
-              text: "Sepertinya terjadi kesalahan...",
+              title: "Oops...",
+              text: "Sepertinya terjadi kesalahan",
             });
           });
       }
