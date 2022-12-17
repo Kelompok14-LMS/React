@@ -1,5 +1,5 @@
 export const constants = {
-  BASE_URL: "http://educatetheworld.tech/api/v1",
+  BASE_URL: process.env.REACT_APP_BASE_URL,
 };
 
 

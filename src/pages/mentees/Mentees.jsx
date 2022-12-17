@@ -19,10 +19,10 @@ export default function Mentees() {
         >
           <div className="d-flex justify-content-between align-items-center">
             <div
-              className="d-flex align-items-center"
+              className="d-flex align-items-center mr-4"
               style={{ color: "#112D4E" }}
             >
-              <h4 className="mb-0">{course.title}</h4>
+              <h4 className="mb-0" style={{overflow: "hidden", textOverflow: "ellipsis"}}>{course.title}</h4>
             </div>
             <Button
               variant="warning w-7 py-3 px-3"
