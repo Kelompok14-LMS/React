@@ -4,7 +4,7 @@ import Auth from "../utils/Auth";
 
 export default function PrivateRoute() {
   if (!Auth.isAuthorization()) {
-    return <Navigate to="/login" replace={true} />;
+    return <Navigate to="/" replace={true} />;
   }
   return (
     <Layout>

@@ -68,6 +68,7 @@ export default function Section({ id, modules }) {
     });
 
   const { data: assignment } = useGetAssignmentByCourseQuery(id);
+
   const [deleteAssignment] = useDeleteAssignmentMutation();
 
   const handleDeleteAssignment = (assignment_id) =>
@@ -87,7 +88,8 @@ export default function Section({ id, modules }) {
           title: "Terhapus!",
           text: "File telah terhapus!",
           icon: "success",
-          confirmButtonColor: "#3085d6",
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
     });
@@ -196,14 +198,14 @@ export default function Section({ id, modules }) {
         </Accordion>
       ))}
 
-      {assignment?.map((item) => (
-        <Accordion className="mb-3" key={item.id}>
+      {assignment?.id && (
+        <Accordion className="mb-3" key={assignment?.id}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Assignment</Accordion.Header>
             <Accordion.Body>
               <div>
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h6>{item.title}</h6>
+                  <h6>{assignment?.title}</h6>
                   <Dropdown align="end">
                     <Dropdown.Toggle size="sm" variant="outline-warning border-dark">
                       <BsGearFill />
@@ -214,27 +216,29 @@ export default function Section({ id, modules }) {
                         onClick={() =>
                           navigate(`/edit-assignment`, {
                             state: {
-                              course_id: id,
-                              assignment_id: item.id,
-                              title: item.title,
-                              description: item.description,
+                              course_id: assignment?.course_id,
+                              assignment_id: assignment?.id,
+                              title: assignment?.title,
+                              description: assignment?.description,
                             },
                           })
                         }
                       >
                         Edit Assignment
                       </Dropdown.Item>
-                      <Dropdown.Item onClick={() => handleDeleteAssignment(item.id)}>Hapus Assignment</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleDeleteAssignment(assignment?.id)}>
+                        Hapus Assignment
+                      </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
 
-                <p>{item.description}</p>
+                <p>{assignment?.description}</p>
               </div>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
-      ))}
+      )}
     </div>
   );
 }

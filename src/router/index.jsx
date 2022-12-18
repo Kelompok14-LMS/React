@@ -16,6 +16,10 @@ import DetailCourse from "../pages/courses/DetailCourse";
 import EditAssignment from "../pages/courses/EditAssignment";
 import EditMaterial from "../pages/courses/EditMaterial";
 import EditSection from "../pages/courses/EditSection";
+import Mentees from "../pages/mentees/Mentees";
+import DetailMentees from "../pages/mentees/DetailMentees";
+import Assignments from "../pages/assignments/Assignments";
+import DetailAssignments from "../pages/assignments/DetailAssignments";
 
 export default function SetupRouter() {
   return (
@@ -42,6 +46,10 @@ export default function SetupRouter() {
             <Route path="/edit-material/" element={<EditMaterial />} />
             <Route path="/add-assignment/:id" element={<AddAssignment />} />
             <Route path="/edit-assignment" element={<EditAssignment />} />
+            <Route path="/mentees" element={<Mentees />} />
+            <Route path="/detailmentees" element={<DetailMentees />} />
+            <Route path="/assignments" element={<Assignments />} />
+            <Route path="/detailAssignments" element={<DetailAssignments />} />
           </Route>
         </Routes>
       </BrowserRouter>

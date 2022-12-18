@@ -91,20 +91,7 @@ const SignInPage = () => {
                   onChange={handleChange}
                   required
                 />
-                <div className="form-check d-flex align-items-center p-0 mt-2">
-                  <input
-                    type="checkbox"
-                    id="vehicle1"
-                    name="remind"
-                    value="Bike"
-                    style={{ width: "26px", height: "26px" }}
-                  />
-                  <label htmlFor="remind" className="ms-2">
-                    {" "}
-                    Ingat Aku ?
-                  </label>
-                </div>
-                <button type="submit" className="btn-submit w-100 mt-4">
+                <button type="submit" className="btn-submit w-100 mt-5">
                   Masuk
                 </button>
               </form>

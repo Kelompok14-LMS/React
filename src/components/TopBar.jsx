@@ -1,10 +1,11 @@
 import React from "react";
+import Auth from "../utils/Auth";
+import DefaultAvatar from "../assets/img/default-avatar.png";
+import Logo from "../assets/img/logo.svg";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useGetProfileQuery } from "../store/features/user/profileSlice";
-import Auth from "../utils/Auth";
-import Logo from "../assets/img/logo.svg";
 
 export default function TopBar() {
   const navigate = useNavigate();
@@ -13,19 +14,34 @@ export default function TopBar() {
   return (
     <Navbar bg="white" expand="lg">
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand as={NavLink} to="/courses">
           <img src={Logo} alt="Logo" className="img-fluid" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="mx-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-            <Nav.Link as={Link} to="/courses" className="fw-semibold text-black me-5">
+        <Navbar.Collapse>
+          <Nav className="mx-auto my-2 my-lg-0">
+            <Nav.Link
+              as={NavLink}
+              to="/courses"
+              className="fw-semibold text-black me-5"
+              style={({ isActive }) => ({ textDecoration: isActive ? "underline" : "none" })}
+            >
               Courses
             </Nav.Link>
-            <Nav.Link as={Link} to="/mentees" className="fw-semibold text-black me-5">
+            <Nav.Link
+              as={NavLink}
+              to="/mentees"
+              className="fw-semibold text-black me-5"
+              style={({ isActive }) => ({ textDecoration: isActive ? "underline" : "none" })}
+            >
               Meentees
             </Nav.Link>
-            <Nav.Link href="#action2" className="fw-semibold text-black">
+            <Nav.Link
+              as={NavLink}
+              to="/assignments"
+              className="fw-semibold text-black"
+              style={({ isActive }) => ({ textDecoration: isActive ? "underline" : "none" })}
+            >
               Assignments
             </Nav.Link>
           </Nav>
@@ -33,7 +49,7 @@ export default function TopBar() {
           <NavDropdown
             title={
               <img
-                src={profile?.profile_picture}
+                src={profile?.profile_picture ? profile?.profile_picture : DefaultAvatar}
                 className="rounded-circle"
                 style={{ width: "30px", height: "30px", objectFit: "cover" }}
                 alt=""
@@ -45,7 +61,7 @@ export default function TopBar() {
           >
             <NavDropdown.Item disabled className="text-black mb-2">
               <img
-                src={profile?.profile_picture}
+                src={profile?.profile_picture ? profile?.profile_picture : DefaultAvatar}
                 className="rounded-circle"
                 style={{ width: "20px", height: "20px", objectFit: "cover", marginRight: "20px" }}
                 alt=""

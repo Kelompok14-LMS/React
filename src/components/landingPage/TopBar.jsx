@@ -7,7 +7,7 @@ export default function TopBar() {
   return (
     <Navbar bg="white" expand="lg">
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand as={Link} to="/">
           <div className="nav-logo">
             <img src={Logo} alt="" style={{ width: "100%", objectFit: "cover" }} />
           </div>

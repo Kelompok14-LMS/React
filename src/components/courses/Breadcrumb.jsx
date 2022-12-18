@@ -9,20 +9,20 @@ export default function Breadcrumb({ prev1, link1, prev2, link2, prev3, link3, c
     <div>
       <nav>
         <ol className="breadcrumb">
-          <li className="breadcrumb-item fs-5">
+          <li className="breadcrumb-item fs-3 fw-semibold">
             <Link to={`${link1}`}>{prev1}</Link>
           </li>
           {breadcrumb2 && (
-            <li className="breadcrumb-item fs-5">
+            <li className="breadcrumb-item fs-3 fw-semibold">
               <Link to={`${link2}`}>{prev2}</Link>
             </li>
           )}
           {breadcrumb3 && (
-            <li className="breadcrumb-item fs-5">
+            <li className="breadcrumb-item fs-3 fw-semibold">
               <Link to={`${link3}`}>{prev3}</Link>
             </li>
           )}
-          <li className="breadcrumb-item active fs-5 text-warning">{current}</li>
+          <li className="breadcrumb-item active fs-3 fw-semibold text-warning">{current}</li>
         </ol>
       </nav>
     </div>

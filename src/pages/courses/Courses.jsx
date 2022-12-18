@@ -50,18 +50,28 @@ export default function Courses() {
 
   return (
     <>
-      <div className="d-flex justify-content-between mt-5">
-        <h2 className="text-white">Daftar Courses</h2>
-        <div>
-          <Button variant="warning" as={Link} to="/add-course">
-            {" "}
-            + Tambah Course
+      {!courses && (
+        <div className="d-flex justify-content-between border border-white rounded mt-5 p-5">
+          <h4 className="text-white">Ayo mulai buat course anda</h4>
+          <Button variant="warning fw-semibold" as={Link} to="/add-course">
+            + Buat Course
           </Button>
         </div>
-      </div>
+      )}
+
+      {courses && (
+        <div className="d-flex justify-content-between my-4">
+          <h3 className="text-white">Daftar Courses</h3>
+          <div>
+            <Button variant="warning" as={Link} to="/add-course">
+              + Tambah Course
+            </Button>
+          </div>
+        </div>
+      )}
 
       {courses?.map((item) => (
-        <div className="shadow bg-body rounded my-5" key={item.course_id}>
+        <div className="shadow bg-body rounded mb-5" key={item.course_id}>
           <Row>
             <Col lg={6}>
               <img

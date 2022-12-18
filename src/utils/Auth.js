@@ -10,7 +10,7 @@ const Auth = {
   },
   signOut(navigate) {
     Cookies.remove("token");
-    navigate("/login");
+    navigate("/");
   },
   storeUserInfoToCookie(data) {
     if (!data.token) return null;

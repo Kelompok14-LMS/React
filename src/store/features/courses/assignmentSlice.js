@@ -13,7 +13,7 @@ export const assignmentSlice = createApi({
   tagTypes: ["Assignment"],
   endpoints: (builder) => ({
     getAssignmentByCourse: builder.query({
-      query: (course_id) => `/assignments/course/${course_id}`,
+      query: (course_id) => `/assignments/courses/${course_id}`,
       transformResponse: (response) => response.data,
       providesTags: ["Assignment"],
     }),

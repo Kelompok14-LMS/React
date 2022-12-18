@@ -9,8 +9,6 @@ export default function EditSection() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  console.log(state);
-
   const [title, setTitle] = useState(state.title);
   const [description, setDescription] = useState(state.description);
 

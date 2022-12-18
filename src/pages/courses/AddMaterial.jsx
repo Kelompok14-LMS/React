@@ -63,12 +63,12 @@ export default function AddMaterial() {
       <div className="shadow-lg bg-body p-5 rounded-3 mb-5">
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Judul Section</Form.Label>
+            <Form.Label>Judul Materi</Form.Label>
             <Form.Control type="text" placeholder="Klik disini" value={title} onChange={onTitleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Deskripsi Section</Form.Label>
+            <Form.Label>Deskripsi Materi</Form.Label>
             <Form.Control
               as="textarea"
               rows={7}
