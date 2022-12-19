@@ -13,7 +13,7 @@ export const menteeAssignmentSlice = createApi({
   tagTypes: ["MenteeAssignment"],
   endpoints: (builder) => ({
     getMenteeAssignments: builder.query({
-      query: (assignment_id) => `mentee-assignments/assignments/${assignment_id}`,
+      query: ({assignment_id, page = 1}) => `mentee-assignments/assignments/${assignment_id}?page=${page}`,
       transformResponse: (response) => response.data,
       providesTags: ["MenteeAssignment"],
     }),

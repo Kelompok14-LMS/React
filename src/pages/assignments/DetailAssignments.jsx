@@ -10,9 +10,10 @@ import Grade from "../../components/mentees/Grade";
 
 export default function DetailAssignments() {
   const { state } = useLocation();
+  const [page, setPage] = useState(1)
 
   const { data: getAssignment } = useGetAssignmentByCourseQuery(state.course_id);
-  const { data: menteeAssignments } = useGetMenteeAssignmentsQuery(getAssignment?.id);
+  const { data: menteeAssignments } = useGetMenteeAssignmentsQuery({assignment_id: getAssignment?.id, page: page});
 
   const [grade, setGrade] = useState(0);
   const [name, setName] = useState("");
@@ -32,10 +33,6 @@ export default function DetailAssignments() {
     setName(item.name);
   };
 
-  // hover
-  const [hoverLeft, setHoverLeft] = useState(false);
-  const [hoverRight, setHoverRight] = useState(false);
-
   return (
     <div className="mb-5">
       <div className="my-4">
@@ -43,7 +40,7 @@ export default function DetailAssignments() {
       </div>
       <div style={{ flex: 1 }} className="rounded-2 bg-white">
         <div className="p-4">
-          {menteeAssignments?.map((item) => (
+          {menteeAssignments?.result?.map((item) => (
             <div key={item.id}>
               <div className="d-flex align-items-center">
                 <img
@@ -118,46 +115,34 @@ export default function DetailAssignments() {
           className="d-flex px-3 mb-3 justify-content-between align-items-center"
         >
           <p style={{ fontSize: 18, color: "#8896A6" }} className="mb-0">
-            1 - 10 of 30 mentees
+            1 - {menteeAssignments?.limit} of {menteeAssignments?.total_rows} mentees
           </p>
           <p style={{ fontSize: 16, color: "#8896A6" }} className="mb-0">
-            1 of 3 pages
+            {menteeAssignments?.page} of {menteeAssignments?.total_pages} pages
           </p>
 
           <div className="d-flex">
-            <AiOutlineLeft
-              style={{
-                cursor: "pointer",
-                color: hoverLeft ? "gray" : "#E4B548",
-              }}
-              size={26.85}
-              onClick={() => {
-                console.log("Holla komostas");
-              }}
-              onMouseEnter={() => {
-                setHoverLeft(true);
-              }}
-              onMouseLeave={() => {
-                setHoverLeft(false);
-              }}
-            />
+            <button className="border-0 bg-white" onClick={() => setPage(page - 1)} disabled={page === 1}>
+              <AiOutlineLeft
+                style={{
+                  color: page === 1 && "gray",
+                }}
+                size={26.85}
+                color="#E4B548"
+                className="left-chevron"
+              />
+            </button>
             <div style={{ width: 18 }} />
-            <AiOutlineRight
-              style={{
-                cursor: "pointer",
-                color: hoverRight ? "gray" : "#E4B548",
-              }}
-              size={26.85}
-              onClick={() => {
-                console.log("Holla komostas");
-              }}
-              onMouseEnter={() => {
-                setHoverRight(true);
-              }}
-              onMouseLeave={() => {
-                setHoverRight(false);
-              }}
-            />
+            <button className="border-0 bg-white" onClick={() => setPage(page + 1)} disabled={page === menteeAssignments?.total_pages}>
+              <AiOutlineRight
+                style={{
+                  color: page === menteeAssignments?.total_pages && "gray",
+                }}
+                size={26.85}
+                color="#E4B548"
+                className="right-chevron"
+              />
+            </button>
           </div>
         </div>
       </div>

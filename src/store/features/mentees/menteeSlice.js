@@ -13,7 +13,7 @@ export const menteeSlice = createApi({
   tagTypes: ["Mentee"],
   endpoints: (builder) => ({
     getMenteesCourses: builder.query({
-      query: (course_id) => `/courses/${course_id}/mentees`,
+      query: ({course_id, page = 1}) => `/courses/${course_id}/mentees?page=${page}`,
       transformResponse: (response) => response.data,
       providesTags: ["Mentee"],
     }),
