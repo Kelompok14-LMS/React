@@ -1,0 +1,71 @@
+#login .h-100vh {
+  height: 100vh;
+}
+
+section {
+  width: 100vw;
+}
+
+#login .main-title {
+  font-size: 3em;
+  color: white;
+  font-weight: 500;
+}
+
+#login .main-info {
+  font-size: 1.5em;
+  color: white;
+}
+
+#login .form-login {
+  padding: 0 0 0.75em 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid white !important;
+}
+
+#login .form-control {
+  background-color: #112d4e;
+}
+
+#login .main-input {
+  padding-left: 1.5em;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 1.25em !important;
+  height: 56px;
+  color: #112d4e;
+  background-color: white;
+}
+
+#login .mt-4 {
+  margin-top: 1.25em !important;
+}
+
+#login .form-check label {
+  font-size: 1.5em;
+  color: white;
+}
+
+#login .form-label {
+  font-size: 2em;
+  color: white;
+  margin-top: 0.5em;
+}
+
+#login p {
+  font-size: 1.5em;
+}
+
+#login .btn-submit {
+  border: 0;
+  padding: 0.75em 0;
+  background-color: #e4b548;
+  color: #112d4e;
+  font-size: 1.25em;
+  border-radius: 8px;
+}
+
+#login .text-gold {
+  color: #e4b548;
+}

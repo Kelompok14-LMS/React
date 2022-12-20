@@ -1,0 +1,90 @@
+body {
+  overflow-x: hidden;
+}
+
+#register .h-100vh {
+  height: 100vh;
+}
+
+#register .section-hide .col {
+  overflow-y: auto;
+  padding: 0 0;
+}
+
+#register section {
+  width: 100vw;
+}
+
+#register .main-title {
+  font-size: 3em;
+  color: white;
+  font-weight: 500;
+}
+
+#register .main-subtitle {
+  width: 70%;
+}
+
+#register .form-login {
+  padding: 0 0 0.75em 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid white !important;
+}
+
+#register .main-input::placeholder {
+  color: #112d4e !important;
+}
+
+#register .mt-4 {
+  margin-top: 1.25em !important;
+}
+
+#register .form-check label {
+  font-size: 1.5em;
+  color: white;
+}
+
+#register .main-info {
+  font-size: 1.5em;
+  color: white;
+}
+
+#register .pass-info {
+  font-size: 1em;
+}
+
+#register .btn-submit {
+  border: 0;
+  padding: 0.75em 0;
+  background-color: #e4b548;
+  color: #112d4e;
+  font-size: 1.25em;
+  border-radius: 8px;
+}
+
+#register .text-gold {
+  color: #e4b548;
+}
+
+#register .main-input {
+  padding-left: 1.5em;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 1.25em !important;
+  height: 56px;
+  color: #112d4e;
+  background-color: white;
+}
+
+#register .main-title {
+  font-size: 3em;
+  color: white;
+  font-weight: 500;
+}
+
+#register .form-label {
+  font-size: 2em;
+  color: white;
+  margin-top: 0.5em;
+}

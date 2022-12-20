@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.upload-gambar {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-position: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  border-radius: 8px 8px 0px 0px;
 }
 
-.App-link {
-  color: #61dafb;
+.accordion-button:not(.collapsed) {
+  color: #ffffff !important;
+  background-color: #112d4e !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.accordion-button:not(.collapsed)::after {
+  filter: invert(50%);
+}
+
+.section .dropdown-toggle::after {
+  display: none !important;
+}
+
+.breadcrumb a {
+  text-decoration: none !important;
+  color: #ffffff !important;
+}
+
+.activated {
+  text-decoration: underline !important;
+}
+
+.left-chevron:hover {
+  color: gray !important;
+}
+
+.right-chevron:hover {
+  color: gray !important;
+}
+
+@media only screen and (max-width: 400px) {
+  .body-profile {
+    margin-top: 140px;
+    height: 300px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .image-profile {
+    position: relative;
+    bottom: 170px;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media only screen and (min-width: 401px) {
+  .body-profile {
+    margin-top: 140px;
+    height: 300px;
+  }
+
+  .image-profile {
+    position: relative;
+    bottom: 170px;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .thumbnail-course {
+    border-radius: 5px 5px 0px 0px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .thumbnail-course {
+    border-radius: 5px 0px 0px 5px;
+  }
+
+  .body-profile {
+    margin-top: 200px;
+    height: 370px;
+  }
+
+  .image-profile {
+    position: relative;
+    bottom: 230px;
+    width: 420px;
+    height: 420px;
   }
 }
