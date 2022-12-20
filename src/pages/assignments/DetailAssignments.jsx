@@ -10,13 +10,14 @@ import Grade from "../../components/mentees/Grade";
 
 export default function DetailAssignments() {
   const { state } = useLocation();
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
 
   const { data: getAssignment } = useGetAssignmentByCourseQuery(state.course_id);
-  const { data: menteeAssignments } = useGetMenteeAssignmentsQuery({assignment_id: getAssignment?.id, page: page});
+  const { data: menteeAssignments } = useGetMenteeAssignmentsQuery({ assignment_id: getAssignment?.id, page: page });
 
   const [grade, setGrade] = useState(0);
   const [name, setName] = useState("");
+  const [menteeAssignmentId, setMenteeAssignmentId] = useState("");
 
   const handleChange = (e) => {
     const value = Math.max(0, Math.min(100, Number(e.target.value)));
@@ -31,6 +32,7 @@ export default function DetailAssignments() {
     setShow(true);
     setGrade(item.grade);
     setName(item.name);
+    setMenteeAssignmentId(item.id);
   };
 
   return (
@@ -84,13 +86,13 @@ export default function DetailAssignments() {
                       </Form.Group>
                       <p className="mb-0">/100</p>
                     </div>
-                    <Button variant="outline-warning border-dark" onClick={() => handleShow(item, item.name)}>
+                    <Button variant="outline-warning border-dark" onClick={() => handleShow(item)}>
                       Nilai
                     </Button>
                     <Grade
                       show={show}
                       handleClose={handleClose}
-                      id={item.id}
+                      id={menteeAssignmentId}
                       assignment_id={getAssignment?.id}
                       grade={grade}
                       handleChange={handleChange}
@@ -133,7 +135,11 @@ export default function DetailAssignments() {
               />
             </button>
             <div style={{ width: 18 }} />
-            <button className="border-0 bg-white" onClick={() => setPage(page + 1)} disabled={page === menteeAssignments?.total_pages}>
+            <button
+              className="border-0 bg-white"
+              onClick={() => setPage(page + 1)}
+              disabled={page === menteeAssignments?.total_pages}
+            >
               <AiOutlineRight
                 style={{
                   color: page === menteeAssignments?.total_pages && "gray",
