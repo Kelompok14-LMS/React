@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import elipseImage from "../../assets/img/Ellipse-3.png";
+import DefaultAvatar from "../../assets/img/default-avatar.png";
 import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import { useDeleteAccessCourseMutation, useGetMenteesCoursesQuery } from "../../store/features/mentees/menteeSlice";
@@ -68,7 +68,7 @@ export default function DetailMentees() {
                       height: "40px",
                       marginRight: "10px",
                     }}
-                    src={elipseImage}
+                    src={item.profile_picture ? item?.profile_picture : DefaultAvatar}
                     alt=""
                   />
                   <div>

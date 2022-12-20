@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import elipseImage from "../../assets/img/Ellipse-3.png";
+import DefaultAvatar from "../../assets/img/default-avatar.png";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { useGetAssignmentByCourseQuery } from "../../store/features/courses/assignmentSlice";
 import { useGetMenteeAssignmentsQuery } from "../../store/features/mentees/menteeAssignmentSlice";
@@ -51,7 +51,7 @@ export default function DetailAssignments() {
                     width: "40px",
                     height: "40px",
                   }}
-                  src={elipseImage}
+                  src={item.profile_picture ? item?.profile_picture : DefaultAvatar}
                   alt=""
                 />
                 <div>
