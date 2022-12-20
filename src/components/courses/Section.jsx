@@ -8,12 +8,9 @@ import {
   useDeleteModuleMutation,
 } from "../../store/features/courses/courseSlice";
 import { BsGearFill } from "react-icons/bs";
-import {
-  useDeleteAssignmentMutation,
-  useGetAssignmentByCourseQuery,
-} from "../../store/features/courses/assignmentSlice";
+import { useDeleteAssignmentMutation } from "../../store/features/courses/assignmentSlice";
 
-export default function Section({ id, modules }) {
+export default function Section({ id, modules, assignment }) {
   const navigate = useNavigate();
 
   const [deleteModule] = useDeleteModuleMutation();
@@ -67,13 +64,11 @@ export default function Section({ id, modules }) {
       }
     });
 
-  const { data: assignment } = useGetAssignmentByCourseQuery(id);
-
   const [deleteAssignment] = useDeleteAssignmentMutation();
 
   const handleDeleteAssignment = (assignment_id) =>
     Swal.fire({
-      title: "Yakin untuk mengahpus?",
+      title: "Yakin untuk menghapus?",
       text: "Anda tidak akan dapat mengembalikan ini!",
       icon: "warning",
       showCancelButton: true,
@@ -81,16 +76,27 @@ export default function Section({ id, modules }) {
       cancelButtonColor: "#d33",
       confirmButtonText: "Ya, hapus!",
       cancelButtonText: "Batal",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        deleteAssignment(assignment_id);
-        Swal.fire({
-          title: "Terhapus!",
-          text: "File telah terhapus!",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        await deleteAssignment(assignment_id)
+          .unwrap()
+          .then(() => {
+            Swal.fire({
+              title: "Terhapus!",
+              text: "File telah terhapus!",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            window.location.reload();
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Sepertinya terjadi kesalahan",
+            });
+          });
       }
     });
 

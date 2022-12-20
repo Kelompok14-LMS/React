@@ -10,9 +10,9 @@ import Breadcrumb from "../../components/courses/Breadcrumb";
 
 export default function DetailMentees() {
   const { state } = useLocation();
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
 
-  const { data: mentees } = useGetMenteesCoursesQuery({course_id: state.course_id, page: page});
+  const { data: mentees } = useGetMenteesCoursesQuery({ course_id: state.course_id, page: page });
 
   const [deleteMentees] = useDeleteAccessCourseMutation();
 
@@ -116,7 +116,11 @@ export default function DetailMentees() {
               />
             </button>
             <div style={{ width: 18 }} />
-            <button className="border-0 bg-white" onClick={() => setPage(page + 1)} disabled={page === mentees?.total_pages}>
+            <button
+              className="border-0 bg-white"
+              onClick={() => setPage(page + 1)}
+              disabled={page === mentees?.total_pages}
+            >
               <AiOutlineRight
                 style={{
                   color: page === mentees?.total_pages && "gray",

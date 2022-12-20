@@ -1,18 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
+import Alert from "../../components/Alert";
+import Breadcrumb from "../../components/courses/Breadcrumb";
+import EditCourse from "../../components/courses/EditCourse";
+import Section from "../../components/courses/Section";
+import Swal from "sweetalert2";
 import { Button, Form } from "react-bootstrap";
+import { fileReader } from "../../utils/fileReader";
 import { Link, useParams } from "react-router-dom";
 import { RiPencilFill } from "react-icons/ri";
-import Section from "../../components/courses/Section";
-import Breadcrumb from "../../components/courses/Breadcrumb";
+import { useGetAssignmentByCourseQuery } from "../../store/features/courses/assignmentSlice";
 import { useGetDetailCourseQuery, useUpdateCourseMutation } from "../../store/features/courses/courseSlice";
-import Swal from "sweetalert2";
-import EditCourse from "../../components/courses/EditCourse";
-import { fileReader } from "../../utils/fileReader";
 
 export default function DetailCourse() {
   // consume api
   const { id } = useParams();
+
   const { data: detailCourse, isSuccess } = useGetDetailCourseQuery(id);
+  const { data: assignment } = useGetAssignmentByCourseQuery(id);
 
   // state
   const [thumbnail, setThumbnail] = useState();
@@ -43,17 +47,11 @@ export default function DetailCourse() {
 
     await updateCourse({ course_id: id, data: payload })
       .unwrap()
-      .then((_) => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Course berhasil diperbarui",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      .then(() => {
+        Alert.updateSuccess("Course berhasil diperbarui");
         setToggleEdit(false);
       })
-      .catch((_) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -135,12 +133,17 @@ export default function DetailCourse() {
             <Button variant="warning" as={Link} to={`/add-section/${detailCourse?.course_id}`}>
               + Tambah Section
             </Button>
-            <Button variant="outline-secondary" as={Link} to={`/add-assignment/${detailCourse?.course_id}`}>
+            <Button
+              variant="outline-secondary"
+              as={Link}
+              to={`/add-assignment/${detailCourse?.course_id}`}
+              disabled={assignment}
+            >
               + Tambah Assignment
             </Button>
           </div>
           <div>
-            <Section id={detailCourse?.course_id} modules={detailCourse?.modules} />
+            <Section id={detailCourse?.course_id} modules={detailCourse?.modules} assignment={assignment} />
           </div>
         </div>
       </div>

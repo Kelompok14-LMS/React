@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
+import Alert from "../../components/Alert";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useAddModuleMutation } from "../../store/features/courses/courseSlice";
 
@@ -27,22 +27,11 @@ export default function AddSection() {
     })
       .unwrap()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Section berhasil dibuat",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        Alert.addSuccess("Section berhasil dibuat");
         navigate(`/detail-course/${id}`);
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal!",
-          text: "Data tidak boleh ada yang kosong!",
-          confirmButtonColor: "#3085d6",
-        });
+        Alert.addError();
       });
   };
 
@@ -65,7 +54,7 @@ export default function AddSection() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Deskripsi Section (Opsional)</Form.Label>
+            <Form.Label>Deskripsi Section</Form.Label>
             <Form.Control
               as="textarea"
               rows={7}

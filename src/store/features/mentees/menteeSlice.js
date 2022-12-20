@@ -6,14 +6,20 @@ export const menteeSlice = createApi({
   reducerPath: "menteeSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
-    headers: {
-      Authorization: `Bearer ${Auth.getAccessToken()}`,
+    prepareHeaders: (headers) => {
+      const token = Auth.getAccessToken();
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
     },
   }),
   tagTypes: ["Mentee"],
   endpoints: (builder) => ({
     getMenteesCourses: builder.query({
-      query: ({course_id, page = 1}) => `/courses/${course_id}/mentees?page=${page}`,
+      query: ({ course_id, page = 1 }) => `/courses/${course_id}/mentees?page=${page}`,
       transformResponse: (response) => response.data,
       providesTags: ["Mentee"],
     }),

@@ -2,13 +2,15 @@ import "../assets/css/login.css";
 
 import { Row, Col, Container } from "react-bootstrap";
 import logoLogin from "../assets/img/logo-login.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import { useState } from "react";
 import { useLoginMentorMutation } from "../store/features/user/userSlice";
-import Swal from "sweetalert2";
+import Alert from "../components/Alert";
 
 const SignInPage = () => {
+  const navigate = useNavigate();
+
   const emailRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
 
   const [err, setErr] = useState("");
@@ -34,22 +36,12 @@ const SignInPage = () => {
     } else {
       await loginMentor(form)
         .unwrap()
-        .then((_) => {
-          Swal.fire({
-            icon: "success",
-            title: "Login Berhasil",
-            text: "Selamat Datang",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          window.location.reload();
+        .then(() => {
+          Alert.signInSuccess();
+          navigate("/courses");
         })
         .catch((err) => {
-          Swal.fire({
-            title: "Login Gagal",
-            text: `${err?.data?.message}`,
-            icon: "error",
-          });
+          Alert.signInError(err);
         });
       setErr("");
     }

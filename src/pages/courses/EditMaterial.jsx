@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import Alert from "../../components/Alert";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useUpdateMaterialMutation } from "../../store/features/courses/courseSlice";
 
@@ -33,22 +33,11 @@ export default function EditMaterial() {
     await updateMaterial({ material_id: state.material_id, data: payload })
       .unwrap()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Materi berhasil diperbarui",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        Alert.updateSuccess("Materi berhasil diperbarui");
         navigate(`/detail-course/${state.course_id}`);
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal!",
-          text: "Data tidak boleh ada yang kosong!",
-          confirmButtonColor: "#3085d6",
-        });
+        Alert.updateError();
       });
   };
 

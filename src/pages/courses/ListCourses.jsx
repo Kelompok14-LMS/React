@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useDeleteCourseMutation, useGetCoursesQuery } from "../../store/features/courses/courseSlice";
 import { useGetProfileQuery } from "../../store/features/user/profileSlice";
 
-export default function Courses() {
+export default function ListCourses() {
   const { data: getProfile } = useGetProfileQuery();
 
   const { data: courses } = useGetCoursesQuery(getProfile?.id);

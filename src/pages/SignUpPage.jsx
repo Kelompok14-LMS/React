@@ -6,7 +6,7 @@ import Loading from "../components/Loading/Loading";
 import { useState } from "react";
 import { useRegisterMentorMutation } from "../store/features/user/userSlice";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import Alert from "../components/Alert";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -47,22 +47,11 @@ const SignUpPage = () => {
         password: form.password,
       })
         .unwrap()
-        .then((_) => {
-          Swal.fire({
-            icon: "success",
-            title: "Daftar Berhasil",
-            text: "Silahkan Login",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/login");
+        .then(() => {
+          Alert.signUpSuccess(navigate);
         })
         .catch((err) => {
-          Swal.fire({
-            title: "Login Gagal",
-            text: `${err?.data?.message}`,
-            icon: "error",
-          });
+          Alert.signUpError(err);
         });
     }
   };

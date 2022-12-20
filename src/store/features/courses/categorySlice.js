@@ -6,8 +6,14 @@ export const categorySlice = createApi({
   reducerPath: "categorySlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
-    headers: {
-      Authorization: `Bearer ${Auth.getAccessToken()}`,
+    prepareHeaders: (headers) => {
+      const token = Auth.getAccessToken();
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
     },
   }),
   tagTypes: ["Category"],

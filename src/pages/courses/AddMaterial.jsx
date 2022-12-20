@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import Alert from "../../components/Alert";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useAddMaterialMutation } from "../../store/features/courses/courseSlice";
 
@@ -30,22 +30,11 @@ export default function AddMaterial() {
     await addMaterial(payload)
       .unwrap()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Materi berhasil dibuat",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        Alert.addSuccess("Materi berhasil dibuat");
         navigate(`/detail-course/${state.course_id}`);
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal!",
-          text: "Data tidak boleh ada yang kosong!",
-          confirmButtonColor: "#3085d6",
-        });
+        Alert.addError();
       });
   };
 

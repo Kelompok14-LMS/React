@@ -10,6 +10,7 @@ import {
   useUpdatePasswordMutation,
   useUpdateProfileMutation,
 } from "../store/features/user/profileSlice";
+import Alert from "../components/Alert";
 
 export default function Profile() {
   const { data: profile, isSuccess } = useGetProfileQuery();
@@ -78,21 +79,10 @@ export default function Profile() {
     await updateProfile({ id: profile?.id, data: payload })
       .unwrap()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Profil berhasil diperbarui",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        Alert.updateSuccess("Profil berhasil diperbarui");
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal!",
-          text: "Data tidak boleh ada yang kosong!",
-          confirmButtonColor: "#3085d6",
-        });
+        Alert.updateError();
       });
   };
 

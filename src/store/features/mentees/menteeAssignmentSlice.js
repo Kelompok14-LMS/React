@@ -6,14 +6,20 @@ export const menteeAssignmentSlice = createApi({
   reducerPath: "menteeAssignmentSlice",
   baseQuery: fetchBaseQuery({
     baseUrl: CONST.BASE_URL,
-    headers: {
-      Authorization: `Bearer ${Auth.getAccessToken()}`,
+    prepareHeaders: (headers) => {
+      const token = Auth.getAccessToken();
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
     },
   }),
   tagTypes: ["MenteeAssignment"],
   endpoints: (builder) => ({
     getMenteeAssignments: builder.query({
-      query: ({assignment_id, page = 1}) => `mentee-assignments/assignments/${assignment_id}?page=${page}`,
+      query: ({ assignment_id, page = 1 }) => `mentee-assignments/assignments/${assignment_id}?page=${page}`,
       transformResponse: (response) => response.data,
       providesTags: ["MenteeAssignment"],
     }),

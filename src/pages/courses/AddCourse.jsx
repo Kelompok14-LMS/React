@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import BgAddCourse from "../../assets/img/bg-add-course.png";
+import Alert from "../../components/Alert";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useGetCategoriesQuery } from "../../store/features/courses/categorySlice";
 import { useAddCourseMutation } from "../../store/features/courses/courseSlice";
@@ -45,22 +45,11 @@ export default function AddCourse() {
     await addCourse(payload)
       .unwrap()
       .then((_) => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Course berhasil dibuat",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        Alert.addSuccess("Course berhasil dibuat");
         navigate("/courses");
       })
       .catch((_) => {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal!",
-          text: "Data tidak boleh ada yang kosong!",
-          confirmButtonColor: "#3085d6",
-        });
+        Alert.addError();
       });
   };
 

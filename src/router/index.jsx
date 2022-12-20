@@ -11,15 +11,15 @@ import AddAssignment from "../pages/courses/AddAssignment";
 import AddCourses from "../pages/courses/AddCourse";
 import AddMaterial from "../pages/courses/AddMaterial";
 import AddSection from "../pages/courses/AddSection";
-import Courses from "../pages/courses/Courses";
+import Assignments from "../pages/assignments/Assignments";
 import DetailCourse from "../pages/courses/DetailCourse";
 import EditAssignment from "../pages/courses/EditAssignment";
 import EditMaterial from "../pages/courses/EditMaterial";
 import EditSection from "../pages/courses/EditSection";
 import Mentees from "../pages/mentees/Mentees";
 import DetailMentees from "../pages/mentees/DetailMentees";
-import Assignments from "../pages/assignments/Assignments";
 import DetailAssignments from "../pages/assignments/DetailAssignments";
+import ListCourses from "../pages/courses/ListCourses";
 
 export default function SetupRouter() {
   return (
@@ -37,7 +37,7 @@ export default function SetupRouter() {
 
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses" element={<ListCourses />} />
             <Route path="/detail-course/:id" element={<DetailCourse />} />
             <Route path="/add-course" element={<AddCourses />} />
             <Route path="/add-section/:id" element={<AddSection />} />

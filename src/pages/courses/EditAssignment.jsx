@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import Alert from "../../components/Alert";
 import Breadcrumb from "../../components/courses/Breadcrumb";
 import { useUpdateAssignmentMutation } from "../../store/features/courses/assignmentSlice";
 
@@ -27,22 +27,11 @@ export default function EditAssignment() {
     })
       .unwrap()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Assignment berhasil diperbarui",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        Alert.updateSuccess("Assignment berhasil diperbarui");
         navigate(`/detail-course/${state.course_id}`);
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal!",
-          text: "Data tidak boleh ada yang kosong!",
-          confirmButtonColor: "#3085d6",
-        });
+        Alert.updateError();
       });
   };
 
