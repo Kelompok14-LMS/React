@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import { FaTrashAlt } from "react-icons/fa";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import DefaultAvatar from "../../assets/img/default-avatar.png";
-import Swal from "sweetalert2";
+import { Button } from "react-bootstrap";
+import { BsClockHistory } from "react-icons/bs";
+import { FaTrashAlt } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useDeleteAccessCourseMutation, useGetMenteesCoursesQuery } from "../../store/features/mentees/menteeSlice";
 import Breadcrumb from "../../components/courses/Breadcrumb";
+import DefaultAvatar from "../../assets/img/default-avatar.png";
+import Swal from "sweetalert2";
+import Moment from "react-moment";
+import "moment/locale/id";
 
 export default function DetailMentees() {
   const { state } = useLocation();
@@ -62,7 +65,7 @@ export default function DetailMentees() {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="d-flex align-items-center">
                   <img
-                    className="rounded-circle"
+                    className="rounded-circle mb-4"
                     style={{
                       width: "40px",
                       height: "40px",
@@ -71,8 +74,21 @@ export default function DetailMentees() {
                     src={item.profile_picture ? item?.profile_picture : DefaultAvatar}
                     alt=""
                   />
-                  <div>
-                    <small className="fw-semibold">{item.email}</small>
+                  <div className="d-block">
+                    <div>
+                      <small className="fw-bold">{item.fullname}</small>
+                    </div>
+                    <div>
+                      <small className="fw-semibold text-black-50">{item.email}</small>
+                    </div>
+                    <div>
+                      <small className="fw-semibold">
+                        <BsClockHistory className="mb-1 me-2" />
+                        <Moment locale="id" interval={1000} fromNow>
+                          {item.created_at}
+                        </Moment>
+                      </small>
+                    </div>
                   </div>
                 </div>
                 <div className="text-center">
